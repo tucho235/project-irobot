@@ -25,10 +25,10 @@ import lejos.nxt.Motor;
  *
  * @author Victor
  */
-public class ControlRemoto extends javax.swing.JPanel implements MouseListener, MouseMotionListener {
+public class ControlRemoto_2 extends javax.swing.JPanel implements MouseListener, MouseMotionListener {
 
     /** Creates new form ControlRemoto */
-    public ControlRemoto() {
+    public ControlRemoto_2() {
         initComponents();
         jcheck.setSelected(true);
 

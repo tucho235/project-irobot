@@ -50,10 +50,10 @@ public class Tester_1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelConector1 = new PanelConector();
+        panelConector1 = new PanelConector_3();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         performance1 = new performance_2();
-        controlRemoto1 = new ControlRemoto();
+        controlRemoto1 = new ControlRemoto_2();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         botonSalir = new javax.swing.JButton();
@@ -141,11 +141,11 @@ public class Tester_1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir;
-    private ControlRemoto controlRemoto1;
+    private ControlRemoto_2 controlRemoto1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private PanelConector panelConector1;
+    private PanelConector_3 panelConector1;
     private performance_2 performance1;
     // End of variables declaration//GEN-END:variables
 

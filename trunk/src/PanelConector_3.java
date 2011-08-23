@@ -28,39 +28,39 @@ import lejos.pc.comm.NXTConnector;
  *
  * @author Victor
  */
-public class PanelConector extends javax.swing.JPanel {
+public class PanelConector_3 extends javax.swing.JPanel {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = -4318528383177385386L;
 	/** Creates new form panelConector */
-    public PanelConector() {
+    public PanelConector_3() {
         initComponents();
         botonConectar.setEnabled(true);
         botonDesconectar.setEnabled(false);
     }
 
     static public boolean estaConectado(){
-        return PanelConector.conectado;
+        return PanelConector_3.conectado;
     }
     
     static public UltrasonicSensor getSensorUltrasonico(){
-        return PanelConector.sensorUltrasonico;
+        return PanelConector_3.sensorUltrasonico;
     };
     
     static public LightSensor getSensorLuz(){
-        return PanelConector.sensorLuz;
+        return PanelConector_3.sensorLuz;
     };
     
     static public TouchSensor getSensorTacto(){
-        return PanelConector.sensorTacto;
+        return PanelConector_3.sensorTacto;
     };
 
     public void botonConectar_actionPerformed(ActionEvent e) {
-            PanelConector.conectado = true;
-            botonConectar.setEnabled(!PanelConector.conectado);
-            botonDesconectar.setEnabled(PanelConector.conectado);
+            PanelConector_3.conectado = true;
+            botonConectar.setEnabled(!PanelConector_3.conectado);
+            botonDesconectar.setEnabled(PanelConector_3.conectado);
 
             conn = new NXTConnector();
 
@@ -68,9 +68,9 @@ public class PanelConector extends javax.swing.JPanel {
             System.err.println("Conexion Fallida");
             jlEstado.setText("Conexion Fallida");
             //System.exit(1);
-            PanelConector.conectado = false;
-            botonDesconectar.setEnabled(PanelConector.conectado);
-            botonConectar.setEnabled(!PanelConector.conectado);
+            PanelConector_3.conectado = false;
+            botonDesconectar.setEnabled(PanelConector_3.conectado);
+            botonConectar.setEnabled(!PanelConector_3.conectado);
         }
         NXTCommand.getSingleton().setNXTComm(conn.getNXTComm());
         Motor.A.resetTachoCount();
@@ -87,16 +87,16 @@ public class PanelConector extends javax.swing.JPanel {
     }
 
     public void botonDesconectar_actionPerformed(ActionEvent e) {
-            PanelConector.conectado = false;
-            botonDesconectar.setEnabled(PanelConector.conectado);
-            botonConectar.setEnabled(!PanelConector.conectado);
+            PanelConector_3.conectado = false;
+            botonDesconectar.setEnabled(PanelConector_3.conectado);
+            botonConectar.setEnabled(!PanelConector_3.conectado);
             try {
                     conn.close();
             } catch (IOException e1) {
                     e1.printStackTrace();
-                    PanelConector.conectado = true;
-                    botonConectar.setEnabled(!PanelConector.conectado);
-                    botonDesconectar.setEnabled(PanelConector.conectado);
+                    PanelConector_3.conectado = true;
+                    botonConectar.setEnabled(!PanelConector_3.conectado);
+                    botonDesconectar.setEnabled(PanelConector_3.conectado);
             }
             jlEstado.setText("Desconectado: "+Calendar.HOUR_OF_DAY + ":" +
                     Calendar.MINUTE + ":" + Calendar.SECOND);
