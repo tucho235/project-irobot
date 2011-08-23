@@ -20,14 +20,14 @@ import java.awt.event.WindowEvent;
  *
  * @author Victor
  */
-public class Tester_1 extends javax.swing.JFrame {
+public class Tester_2 extends javax.swing.JFrame {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = -5012942523733360000L;
 	/** Creates new form Tester */
-    public Tester_1() {
+    public Tester_2() {
         initComponents();
         WindowAdapter oyenteCierraVentana = new java.awt.event.WindowAdapter() {
                 public void windowClosing (WindowEvent e) {

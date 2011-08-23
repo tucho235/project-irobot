@@ -33,7 +33,7 @@ import javax.imageio.ImageIO;
  *
  * @author Victor
  */
-public class Ventana2_1 extends javax.swing.JFrame implements ActionListener, MouseListener, MouseMotionListener {
+public class Ventana2_2 extends javax.swing.JFrame implements ActionListener, MouseListener, MouseMotionListener {
 
 	private boolean conectado = false;
     /**
@@ -41,7 +41,7 @@ public class Ventana2_1 extends javax.swing.JFrame implements ActionListener, Mo
 	 */
 	private static final long serialVersionUID = 201108220307L;
 	/** Creates new form Ventana2 */
-    public Ventana2_1() {
+    public Ventana2_2() {
         initComponents();
         jcheck.setSelected(true);
         
