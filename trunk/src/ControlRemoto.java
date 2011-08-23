@@ -25,10 +25,10 @@ import lejos.nxt.Motor;
  *
  * @author Victor
  */
-public class ControlRemoto_1 extends javax.swing.JPanel implements MouseListener, MouseMotionListener {
+public class ControlRemoto extends javax.swing.JPanel implements MouseListener, MouseMotionListener {
 
     /** Creates new form ControlRemoto */
-    public ControlRemoto_1() {
+    public ControlRemoto() {
         initComponents();
         jcheck.setSelected(true);
 
@@ -224,31 +224,7 @@ public class ControlRemoto_1 extends javax.swing.JPanel implements MouseListener
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jP_Joystick = new javax.swing.JPanel(){
-        	/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			public void paint (Graphics g) {
-        		//super.paint (g);
-        		try {
-                    imagen = ImageIO.read(getClass().getResource("fondo.png"));
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                
-                g.drawImage(imagen, 0, 0, getWidth(), getHeight(),this);
-                if (imagen != null){
-                	setOpaque(false);
-                } else {
-                	setOpaque(true);
-                }
-                
-                super.paint (g);		
-				}
-			
-        };
+        jP_Joystick = new javax.swing.JPanel();
         jL_MotorA = new javax.swing.JLabel();
         jL_MotorB = new javax.swing.JLabel();
         jL_MotorC = new javax.swing.JLabel();
@@ -316,8 +292,6 @@ public class ControlRemoto_1 extends javax.swing.JPanel implements MouseListener
         jtColor.setEnabled(false);
 
         jtDistancia.setEnabled(false);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/irobot.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

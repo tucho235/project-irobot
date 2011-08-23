@@ -28,39 +28,39 @@ import lejos.pc.comm.NXTConnector;
  *
  * @author Victor
  */
-public class PanelConector_1 extends javax.swing.JPanel {
+public class PanelConector extends javax.swing.JPanel {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = -4318528383177385386L;
 	/** Creates new form panelConector */
-    public PanelConector_1() {
+    public PanelConector() {
         initComponents();
         botonConectar.setEnabled(true);
         botonDesconectar.setEnabled(false);
     }
 
     static public boolean estaConectado(){
-        return PanelConector_1.conectado;
+        return PanelConector.conectado;
     }
     
     static public UltrasonicSensor getSensorUltrasonico(){
-        return PanelConector_1.sensorUltrasonico;
+        return PanelConector.sensorUltrasonico;
     };
     
     static public LightSensor getSensorLuz(){
-        return PanelConector_1.sensorLuz;
+        return PanelConector.sensorLuz;
     };
     
     static public TouchSensor getSensorTacto(){
-        return PanelConector_1.sensorTacto;
+        return PanelConector.sensorTacto;
     };
 
     public void botonConectar_actionPerformed(ActionEvent e) {
-            PanelConector_1.conectado = true;
-            botonConectar.setEnabled(!PanelConector_1.conectado);
-            botonDesconectar.setEnabled(PanelConector_1.conectado);
+            PanelConector.conectado = true;
+            botonConectar.setEnabled(!PanelConector.conectado);
+            botonDesconectar.setEnabled(PanelConector.conectado);
 
             conn = new NXTConnector();
 
@@ -68,9 +68,9 @@ public class PanelConector_1 extends javax.swing.JPanel {
             System.err.println("Conexion Fallida");
             jlEstado.setText("Conexion Fallida");
             //System.exit(1);
-            PanelConector_1.conectado = false;
-            botonDesconectar.setEnabled(PanelConector_1.conectado);
-            botonConectar.setEnabled(!PanelConector_1.conectado);
+            PanelConector.conectado = false;
+            botonDesconectar.setEnabled(PanelConector.conectado);
+            botonConectar.setEnabled(!PanelConector.conectado);
         }
         NXTCommand.getSingleton().setNXTComm(conn.getNXTComm());
         Motor.A.resetTachoCount();
@@ -87,16 +87,16 @@ public class PanelConector_1 extends javax.swing.JPanel {
     }
 
     public void botonDesconectar_actionPerformed(ActionEvent e) {
-            PanelConector_1.conectado = false;
-            botonDesconectar.setEnabled(PanelConector_1.conectado);
-            botonConectar.setEnabled(!PanelConector_1.conectado);
+            PanelConector.conectado = false;
+            botonDesconectar.setEnabled(PanelConector.conectado);
+            botonConectar.setEnabled(!PanelConector.conectado);
             try {
                     conn.close();
             } catch (IOException e1) {
                     e1.printStackTrace();
-                    PanelConector_1.conectado = true;
-                    botonConectar.setEnabled(!PanelConector_1.conectado);
-                    botonDesconectar.setEnabled(PanelConector_1.conectado);
+                    PanelConector.conectado = true;
+                    botonConectar.setEnabled(!PanelConector.conectado);
+                    botonDesconectar.setEnabled(PanelConector.conectado);
             }
             jlEstado.setText("Desconectado: "+Calendar.HOUR_OF_DAY + ":" +
                     Calendar.MINUTE + ":" + Calendar.SECOND);
@@ -127,7 +127,7 @@ public class PanelConector_1 extends javax.swing.JPanel {
 
         botonConectar.setText("Conectar");
 
-        jlEstado.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jlEstado.setFont(new java.awt.Font("Tahoma", 2, 11));
         jlEstado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jlEstado.setText("Estado");
         jlEstado.setToolTipText("Estado");
@@ -155,17 +155,6 @@ public class PanelConector_1 extends javax.swing.JPanel {
                     .addComponent(jlEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
-        botonConectar.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				botonConectar_actionPerformed(e);
-			}
-		});
-        
-        botonDesconectar.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				botonDesconectar_actionPerformed(e);
-			}
-		});
     }// </editor-fold>//GEN-END:initComponents
 
 
