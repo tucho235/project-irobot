@@ -57,55 +57,7 @@ public class PanelConector extends javax.swing.JPanel {
         return PanelConector.sensorTacto;
     };
 
-    public void botonConectar_actionPerformed(ActionEvent e) {
-            PanelConector.conectado = true;
-            botonConectar.setEnabled(!PanelConector.conectado);
-            botonDesconectar.setEnabled(PanelConector.conectado);
 
-            conn = new NXTConnector();
-
-        if (!conn.connectTo("NXT", NXTComm.LCP)) {
-            System.err.println("Conexion Fallida");
-            jlEstado.setText("Conexion Fallida");
-            //System.exit(1);
-            PanelConector.conectado = false;
-            botonDesconectar.setEnabled(PanelConector.conectado);
-            botonConectar.setEnabled(!PanelConector.conectado);
-        }
-        NXTCommand.getSingleton().setNXTComm(conn.getNXTComm());
-        Motor.A.resetTachoCount();
-        Motor.B.resetTachoCount();
-        sensorUltrasonico   = new UltrasonicSensor(SensorPort.S1);
-        sensorLuz           = new LightSensor(SensorPort.S2);
-        sensorTacto         = new TouchSensor(SensorPort.S3);
-        jlEstado.setText("Conectado: "+Calendar.HOUR_OF_DAY + ":" +
-                    Calendar.MINUTE + ":" + Calendar.SECOND);
-
-//        jTA_Log.setText("Conectado al NXT "+ Calendar.HOUR_OF_DAY + ":" +
-//                    Calendar.MINUTE + ":" + Calendar.SECOND + "\n");
-//        jTA_Log.append("----------------\n");
-    }
-
-    public void botonDesconectar_actionPerformed(ActionEvent e) {
-            PanelConector.conectado = false;
-            botonDesconectar.setEnabled(PanelConector.conectado);
-            botonConectar.setEnabled(!PanelConector.conectado);
-            try {
-                    conn.close();
-            } catch (IOException e1) {
-                    e1.printStackTrace();
-                    PanelConector.conectado = true;
-                    botonConectar.setEnabled(!PanelConector.conectado);
-                    botonDesconectar.setEnabled(PanelConector.conectado);
-            }
-            jlEstado.setText("Desconectado: "+Calendar.HOUR_OF_DAY + ":" +
-                    Calendar.MINUTE + ":" + Calendar.SECOND);
-
-//            jTA_Log.append("----------------\n");
-//            jTA_Log.append("Desconectado al NXT "+ Calendar.HOUR_OF_DAY + ":" +
-//                            Calendar.MINUTE + ":" + Calendar.SECOND + "\n");
-//        jTA_Log.append("================\n\n");
-    }
 
     /** This method is called from within the constructor to
      * initialize the form.
