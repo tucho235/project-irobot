@@ -56,11 +56,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Desconectar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonDesconectarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonConectar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Conectar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonConectarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlEstado">
       <Properties>
