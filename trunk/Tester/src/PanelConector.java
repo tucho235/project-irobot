@@ -124,10 +124,20 @@ public class PanelConector extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(681, 47));
 
         botonDesconectar.setText("Desconectar");
+        botonDesconectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDesconectarActionPerformed(evt);
+            }
+        });
 
         botonConectar.setText("Conectar");
+        botonConectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonConectarActionPerformed(evt);
+            }
+        });
 
-        jlEstado.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jlEstado.setFont(new java.awt.Font("Tahoma", 2, 11));
         jlEstado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jlEstado.setText("Estado");
         jlEstado.setToolTipText("Estado");
@@ -155,18 +165,59 @@ public class PanelConector extends javax.swing.JPanel {
                     .addComponent(jlEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
-        botonConectar.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				botonConectar_actionPerformed(e);
-			}
-		});
-        
-        botonDesconectar.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				botonDesconectar_actionPerformed(e);
-			}
-		});
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDesconectarActionPerformed
+        // TODO add your handling code here:
+        PanelConector.conectado = false;
+            botonDesconectar.setEnabled(PanelConector.conectado);
+            botonConectar.setEnabled(!PanelConector.conectado);
+            try {
+                    conn.close();
+            } catch (IOException e1) {
+                    e1.printStackTrace();
+                    PanelConector.conectado = true;
+                    botonConectar.setEnabled(!PanelConector.conectado);
+                    botonDesconectar.setEnabled(PanelConector.conectado);
+            }
+            jlEstado.setText("Desconectado: "+Calendar.HOUR_OF_DAY + ":" +
+                    Calendar.MINUTE + ":" + Calendar.SECOND);
+
+//            jTA_Log.append("----------------\n");
+//            jTA_Log.append("Desconectado al NXT "+ Calendar.HOUR_OF_DAY + ":" +
+//                            Calendar.MINUTE + ":" + Calendar.SECOND + "\n");
+//        jTA_Log.append("================\n\n");
+    }//GEN-LAST:event_botonDesconectarActionPerformed
+
+    private void botonConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConectarActionPerformed
+        // TODO add your handling code here:
+        PanelConector.conectado = true;
+            botonConectar.setEnabled(!PanelConector.conectado);
+            botonDesconectar.setEnabled(PanelConector.conectado);
+
+            conn = new NXTConnector();
+
+        if (!conn.connectTo("NXT", NXTComm.LCP)) {
+            System.err.println("Conexion Fallida");
+            jlEstado.setText("Conexion Fallida");
+            //System.exit(1);
+            PanelConector.conectado = false;
+            botonDesconectar.setEnabled(PanelConector.conectado);
+            botonConectar.setEnabled(!PanelConector.conectado);
+        }
+        NXTCommand.getSingleton().setNXTComm(conn.getNXTComm());
+        Motor.A.resetTachoCount();
+        Motor.B.resetTachoCount();
+        sensorUltrasonico   = new UltrasonicSensor(SensorPort.S1);
+        sensorLuz           = new LightSensor(SensorPort.S2);
+        sensorTacto         = new TouchSensor(SensorPort.S3);
+        jlEstado.setText("Conectado: "+Calendar.HOUR_OF_DAY + ":" +
+                    Calendar.MINUTE + ":" + Calendar.SECOND);
+
+//        jTA_Log.setText("Conectado al NXT "+ Calendar.HOUR_OF_DAY + ":" +
+//                    Calendar.MINUTE + ":" + Calendar.SECOND + "\n");
+//        jTA_Log.append("----------------\n");
+    }//GEN-LAST:event_botonConectarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
