@@ -38,7 +38,7 @@ public class Performance extends javax.swing.JPanel {
     public Performance() {
         tests = new ArrayList<Test>();
         initComponents();
-        
+        jsGrados.setValue(10);
     }
 
     /** This method is called from within the constructor to
