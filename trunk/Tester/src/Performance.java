@@ -1,5 +1,9 @@
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -80,7 +84,7 @@ public class Performance extends javax.swing.JPanel {
         btExportar.setEnabled(false);
         btExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExportarActionPerformed(evt);
+				btExportarActionPerformed(evt);
             }
         });
 
@@ -292,10 +296,34 @@ public class Performance extends javax.swing.JPanel {
         System.out.println("====Array : "+jsonArray);
 
         Map map = new HashMap();
-        map.put("beanlist", jsonArray);
+        map.put("testPerformance", jsonArray);
 
         JSONObject jsonObject = new JSONObject(map);
         System.out.println("==== json :"+jsonObject);
+        
+        Calendar calendario = Calendar.getInstance();
+        int dia = calendario.get(Calendar.DAY_OF_MONTH);
+        int mes = calendario.get(Calendar.MONTH) +1;
+        int anio = calendario.get(Calendar.YEAR);
+        int hora =calendario.get(Calendar.HOUR_OF_DAY);
+        int minutos = calendario.get(Calendar.MINUTE);
+        int segundos = calendario.get(Calendar.SECOND);
+        
+        BufferedWriter f;
+		try {
+			f = new BufferedWriter(new FileWriter("c:/resultados.txt"));
+			
+			f.write("Test Generado el "+ dia + "/" + mes + "/" + anio + " a las: " + hora + ":" +minutos + ":" +segundos);
+	        f.newLine();
+	        f.write(jsonObject.toString());
+	        f.flush();
+	        f.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+
     }//GEN-LAST:event_btExportarActionPerformed
 
 
