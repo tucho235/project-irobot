@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lejos.nxt.Motor;
 
@@ -82,7 +84,7 @@ public class Performance extends javax.swing.JPanel {
         btExportar.setEnabled(false);
         btExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btExportarActionPerformed(evt);
+                btExportarActionPerformed(evt);
             }
         });
 
@@ -109,6 +111,8 @@ public class Performance extends javax.swing.JPanel {
                 btSensarActionPerformed(evt);
             }
         });
+
+        progressBar.setMaximum(4);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/irobot.png"))); // NOI18N
 
@@ -207,7 +211,7 @@ public class Performance extends javax.swing.JPanel {
         btExportar.setEnabled(false);
         btNuevoTest.setEnabled(false);
         delta = (Integer)jsGrados.getValue();
-        /* Después de medir cuantos ° equivalen 10 cm volver a descomentar */
+        /* Despuï¿½s de medir cuantos ï¿½ equivalen 10 cm volver a descomentar */
 //        jsGrados.setEnabled(false); 
         currentTest = new Test(idTest,itTest,delta);
         tests.add(currentTest);
@@ -224,7 +228,7 @@ public class Performance extends javax.swing.JPanel {
     }//GEN-LAST:event_btNuevoTestActionPerformed
 
     private void btSensarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSensarActionPerformed
-    	progressBar.setEnabled(true);
+//    	progressBar.setEnabled(true);
     	
     	currentTest.setTiempoLuz(idTest * itTest);
         currentTest.setTiempoTacto(2 * idTest * itTest);
@@ -257,33 +261,22 @@ public class Performance extends javax.swing.JPanel {
         ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
         
         progressBar.setValue(0);
-        progressBar.setEnabled(false);
+//        progressBar.setEnabled(false);
         
-//        Thread t = new Thread(new Runnable() {
-//	    	public void run() {
-//    			while (true){
-//    				if ((clik) && (conectado)){
-//    					System.out.println("conectado: "+conectado+", clik: "+clik);
-//    					imprimir();
-//    					moverMotores();
-//    					if (jcheck.isSelected()){
-//    						actualizarSensores();
-//    					}
-//    				}
-//    				try {
-//    					if (mejorado){
-//    						Thread.sleep(400); //Opcion 2;
-//    					} else {
-//    						Thread.sleep(1); // Opcion 1;
-//    					}
-//						
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
-//    			}
-//    		}
-//	    }, "Thread para capturar el clik del mouse en el joystick y mover los motores");
-//	    t.start();
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                for(int i = 1; i < 5; i++) {
+                    System.out.println("i= " + i );
+                    progressBar.setValue(i);
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Performance.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }, "Thread para capturar el clik del mouse en el joystick y mover los motores");
+        t.start();
         btAvanzar.setEnabled(true);
         btSensar.setEnabled(false);
         btFinalizar.setEnabled(true);

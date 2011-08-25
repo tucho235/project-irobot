@@ -204,6 +204,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JProgressBar" name="progressBar">
+              <Properties>
+                <Property name="maximum" type="int" value="4"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
