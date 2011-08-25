@@ -1,6 +1,7 @@
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 
 /*
  * To change this template, choose Tools | Templates
@@ -36,8 +37,15 @@ public class Tester extends javax.swing.JFrame {
         this.addWindowListener(oyenteCierraVentana);
     }
 
+    private void salir(){
+        if (JOptionPane.showConfirmDialog(null, "Esta seguro que desea salir?"
+            ,"Importante",JOptionPane.OK_CANCEL_OPTION) ==0){
+                    System.exit(0);
+            }
+    }
+
     public void this_windowClosing(WindowEvent e) {
-            System.exit(0);
+           salir();
     }
 
     /** This method is called from within the constructor to
@@ -124,8 +132,7 @@ public class Tester extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
+        salir();
     }//GEN-LAST:event_botonSalirActionPerformed
 
     /**
