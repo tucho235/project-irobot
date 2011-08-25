@@ -202,7 +202,7 @@ public class Performance extends javax.swing.JPanel {
 
     private void nuevoTest(){
         itTest = 1;
-        btFinalizar.setEnabled(true);
+//        btFinalizar.setEnabled(true);
         btSensar.setEnabled(true);
         btExportar.setEnabled(false);
         btNuevoTest.setEnabled(false);
@@ -224,10 +224,41 @@ public class Performance extends javax.swing.JPanel {
     }//GEN-LAST:event_btNuevoTestActionPerformed
 
     private void btSensarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSensarActionPerformed
-        currentTest.setTiempoLuz(idTest * itTest);
+    	progressBar.setEnabled(true);
+    	
+    	currentTest.setTiempoLuz(idTest * itTest);
         currentTest.setTiempoTacto(2 * idTest * itTest);
         currentTest.setTiempoUltrasonido(3 * idTest * itTest);
         ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+        
+        Calendar inicio = Calendar.getInstance();
+        progressBar.setValue(0);
+//        PanelConector.getSensorTacto().isPressed();
+        Calendar fin = Calendar.getInstance();
+        long tiempoTacto = fin.getTimeInMillis() - inicio.getTimeInMillis();
+        currentTest.setTiempoTacto(tiempoTacto);
+        ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+        
+        progressBar.setValue(1);
+        inicio = Calendar.getInstance();
+//        PanelConector.getSensorUltrasonico().getDistance();
+        fin = Calendar.getInstance();
+        long tiempoUltrasonido = fin.getTimeInMillis() - inicio.getTimeInMillis();
+        currentTest.setTiempoUltrasonido(tiempoUltrasonido);
+        ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+        
+        progressBar.setValue(2);
+        inicio = Calendar.getInstance();
+//        PanelConector.getSensorLuz().readNormalizedValue();
+        fin = Calendar.getInstance();
+        long tiempoLuz = fin.getTimeInMillis() - inicio.getTimeInMillis();
+        progressBar.setValue(4);
+        currentTest.setTiempoLuz(tiempoLuz);
+        ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+        
+        progressBar.setValue(0);
+        progressBar.setEnabled(false);
+        
 //        Thread t = new Thread(new Runnable() {
 //	    	public void run() {
 //    			while (true){
@@ -261,6 +292,7 @@ public class Performance extends javax.swing.JPanel {
     private void btAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAvanzarActionPerformed
         itTest++;
         btAvanzar.setEnabled(false);
+        btFinalizar.setEnabled(false);
         btSensar.setEnabled(true);
 //        Motor.A.rotate(delta);
 //        Motor.B.rotate(delta);
@@ -302,7 +334,7 @@ public class Performance extends javax.swing.JPanel {
         
         BufferedWriter f;
 		try {
-			f = new BufferedWriter(new FileWriter("c:/resultados.txt"));
+			f = new BufferedWriter(new FileWriter("c:/resultados ("+dia+"-"+mes+"-"+anio+" "+hora+"."+minutos+"."+segundos+").txt"));
 			f.write("Test Generado el "+ dia + "/" + mes + "/" + anio + " a las: " + hora + ":" +minutos + ":" +segundos);
 	        f.newLine();
 	        f.write(jsonObject.toString());
