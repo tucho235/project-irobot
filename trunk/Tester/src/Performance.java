@@ -206,6 +206,7 @@ public class Performance extends javax.swing.JPanel {
 
     private void nuevoTest(){
         itTest = 1;
+        progressBar.setValue(0);
 //        btFinalizar.setEnabled(true);
         btSensar.setEnabled(true);
         btExportar.setEnabled(false);
@@ -217,8 +218,8 @@ public class Performance extends javax.swing.JPanel {
         tests.add(currentTest);
         ((ModeloTablaTest)jTable1.getModel()).agregarTest(currentTest);
     }
+    
     private void btNuevoTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoTestActionPerformed
-
         if ((Integer)jsGrados.getValue() != 0){
             nuevoTest();
         } else {
@@ -235,47 +236,66 @@ public class Performance extends javax.swing.JPanel {
         currentTest.setTiempoUltrasonido(3 * idTest * itTest);
         ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
         
-        Calendar inicio = Calendar.getInstance();
-        progressBar.setValue(0);
-//        PanelConector.getSensorTacto().isPressed();
-        Calendar fin = Calendar.getInstance();
-        long tiempoTacto = fin.getTimeInMillis() - inicio.getTimeInMillis();
-        currentTest.setTiempoTacto(tiempoTacto);
-        ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
         
-        progressBar.setValue(1);
-        inicio = Calendar.getInstance();
-//        PanelConector.getSensorUltrasonico().getDistance();
-        fin = Calendar.getInstance();
-        long tiempoUltrasonido = fin.getTimeInMillis() - inicio.getTimeInMillis();
-        currentTest.setTiempoUltrasonido(tiempoUltrasonido);
-        ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
-        
-        progressBar.setValue(2);
-        inicio = Calendar.getInstance();
-//        PanelConector.getSensorLuz().readNormalizedValue();
-        fin = Calendar.getInstance();
-        long tiempoLuz = fin.getTimeInMillis() - inicio.getTimeInMillis();
-        progressBar.setValue(4);
-        currentTest.setTiempoLuz(tiempoLuz);
-        ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
-        
-        progressBar.setValue(0);
 //        progressBar.setEnabled(false);
         
         Thread t = new Thread(new Runnable() {
             public void run() {
-                for(int i = 1; i < 5; i++) {
-                    System.out.println("i= " + i );
-                    progressBar.setValue(i);
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(Performance.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            	progressBar.setValue(0);
+            	float gradosA = Float.parseFloat(Integer.toString((Integer)jsGrados.getValue()));
+            	float gradosB = Float.parseFloat(Integer.toString((Integer)jsGrados.getValue()));
+//            	float gradosA = Motor.A.getTachoCount();
+//            	float gradosB = Motor.B.getTachoCount();
+            	currentTest.setGradosMotores((gradosA + gradosB)/2);
+            	((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Performance.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                progressBar.setValue(1);
+                
+            	Calendar inicio = Calendar.getInstance();
+//                PanelConector.getSensorTacto().isPressed();
+                Calendar fin = Calendar.getInstance();
+                long tiempoTacto = fin.getTimeInMillis() - inicio.getTimeInMillis();
+                currentTest.setTiempoTacto(tiempoTacto);
+                ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Performance.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                progressBar.setValue(2);
+                inicio = Calendar.getInstance();
+//                PanelConector.getSensorUltrasonico().getDistance();
+                fin = Calendar.getInstance();
+                long tiempoUltrasonido = fin.getTimeInMillis() - inicio.getTimeInMillis();
+                currentTest.setTiempoUltrasonido(tiempoUltrasonido);
+                ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Performance.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                progressBar.setValue(3);
+                inicio = Calendar.getInstance();
+//                PanelConector.getSensorLuz().readNormalizedValue();
+                fin = Calendar.getInstance();
+                long tiempoLuz = fin.getTimeInMillis() - inicio.getTimeInMillis();
+                currentTest.setTiempoLuz(tiempoLuz);
+                ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Performance.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                progressBar.setValue(4);
             }
-        }, "Thread para capturar el clik del mouse en el joystick y mover los motores");
+        }, "Thread para Sensar");
         t.start();
         btAvanzar.setEnabled(true);
         btSensar.setEnabled(false);
@@ -292,6 +312,7 @@ public class Performance extends javax.swing.JPanel {
         currentTest = new Test(idTest,itTest,delta);
         tests.add(currentTest);
         ((ModeloTablaTest)jTable1.getModel()).agregarTest(currentTest);
+        progressBar.setValue(0);
     }//GEN-LAST:event_btAvanzarActionPerformed
 
     private void btFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinalizarActionPerformed
