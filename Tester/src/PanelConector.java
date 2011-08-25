@@ -132,8 +132,13 @@ public class PanelConector extends javax.swing.JPanel {
                     botonConectar.setEnabled(!PanelConector.conectado);
                     botonDesconectar.setEnabled(PanelConector.conectado);
             }
-            jlEstado.setText("Desconectado: "+Calendar.HOUR_OF_DAY + ":" +
-                    Calendar.MINUTE + ":" + Calendar.SECOND);
+            
+            Calendar calendario = Calendar.getInstance();
+            int hora =calendario.get(Calendar.HOUR_OF_DAY);
+            int minutos = calendario.get(Calendar.MINUTE);
+            int segundos = calendario.get(Calendar.SECOND);
+            
+            jlEstado.setText("Desconectado: "+hora + ":" + minutos + ":" + segundos);
 
 //            jTA_Log.append("----------------\n");
 //            jTA_Log.append("Desconectado al NXT "+ Calendar.HOUR_OF_DAY + ":" +
@@ -163,8 +168,13 @@ public class PanelConector extends javax.swing.JPanel {
         sensorUltrasonico   = new UltrasonicSensor(SensorPort.S1);
         sensorLuz           = new LightSensor(SensorPort.S2);
         sensorTacto         = new TouchSensor(SensorPort.S3);
-        jlEstado.setText("Conectado: "+Calendar.HOUR_OF_DAY + ":" +
-                    Calendar.MINUTE + ":" + Calendar.SECOND);
+        
+        Calendar calendario = Calendar.getInstance();
+        int hora =calendario.get(Calendar.HOUR_OF_DAY);
+        int minutos = calendario.get(Calendar.MINUTE);
+        int segundos = calendario.get(Calendar.SECOND);
+        
+        jlEstado.setText("Conectado: " + hora + ":" + minutos + ":" + segundos);
 
 //        jTA_Log.setText("Conectado al NXT "+ Calendar.HOUR_OF_DAY + ":" +
 //                    Calendar.MINUTE + ":" + Calendar.SECOND + "\n");
