@@ -89,14 +89,19 @@
         <Component class="javax.swing.JButton" name="btNuevoTest">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nuevo Test"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btNuevoTestActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btFinalizar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Finalizar Test"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btFinalizarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btExportar">
           <Properties>
@@ -183,12 +188,18 @@
                 <Property name="text" type="java.lang.String" value="Avanzar"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAvanzarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btSensar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sensar"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSensarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JProgressBar" name="progressBar">
             </Component>
