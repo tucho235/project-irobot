@@ -96,6 +96,16 @@ public class Test {
         this.tiempoUltrasonido = tiempoUltrasonido;
     }
 
+    public String toString(){
+    	return (
+        "idTest" + idTest +
+        "it" + it +
+        "deltaGrados" + deltaGrados +
+        "gradosMotores" + gradosMotores +
+        "tiempoTacto" + tiempoTacto +
+        "tiempoUltrasonido" + tiempoUltrasonido +
+        "tiempoLuz" + tiempoLuz);
+    }
 
 
 }
