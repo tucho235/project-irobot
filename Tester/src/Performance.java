@@ -17,15 +17,13 @@ import lejos.nxt.Motor;
  */
 
 /*
- * performance.java
- *
+ * Performance.java
  * Created on 15/07/2011, 21:20:57
  */
 
 
 
 /**
- *
  * @author Victor
  */
 public class Performance extends javax.swing.JPanel {
@@ -209,7 +207,8 @@ public class Performance extends javax.swing.JPanel {
         btExportar.setEnabled(false);
         btNuevoTest.setEnabled(false);
         delta = (Integer)jsGrados.getValue();
-        jsGrados.setEnabled(false);
+        /* Después de medir cuantos ° equivalen 10 cm volver a descomentar */
+//        jsGrados.setEnabled(false); 
         currentTest = new Test(idTest,itTest,delta);
         tests.add(currentTest);
         ((ModeloTablaTest)jTable1.getModel()).agregarTest(currentTest);
@@ -225,7 +224,6 @@ public class Performance extends javax.swing.JPanel {
     }//GEN-LAST:event_btNuevoTestActionPerformed
 
     private void btSensarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSensarActionPerformed
-        // TODO add your handling code here:
         currentTest.setTiempoLuz(idTest * itTest);
         currentTest.setTiempoTacto(2 * idTest * itTest);
         currentTest.setTiempoUltrasonido(3 * idTest * itTest);
@@ -258,27 +256,21 @@ public class Performance extends javax.swing.JPanel {
         btAvanzar.setEnabled(true);
         btSensar.setEnabled(false);
         btFinalizar.setEnabled(true);
-//        itTest++;
     }//GEN-LAST:event_btSensarActionPerformed
 
     private void btAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAvanzarActionPerformed
-        // TODO add your handling code here:
         itTest++;
-//        System.out.println("itTest: "+itTest);
         btAvanzar.setEnabled(false);
         btSensar.setEnabled(true);
 //        Motor.A.rotate(delta);
 //        Motor.B.rotate(delta);
         currentTest = new Test(idTest,itTest,delta);
-//        System.err.println(currentTest.toString());
         tests.add(currentTest);
         ((ModeloTablaTest)jTable1.getModel()).agregarTest(currentTest);
     }//GEN-LAST:event_btAvanzarActionPerformed
 
     private void btFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinalizarActionPerformed
-        // TODO add your handling code here:
         idTest++;
-//        System.out.println("idTest: "+idTest);
         btNuevoTest.setEnabled(true);
         btFinalizar.setEnabled(false);
         btAvanzar.setEnabled(false);
@@ -287,7 +279,6 @@ public class Performance extends javax.swing.JPanel {
     }//GEN-LAST:event_btFinalizarActionPerformed
 
     private void btExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportarActionPerformed
-        // generar un archivo con el reslutado de los Tests
         Iterator iter = tests.iterator();
         while (iter.hasNext()){
           System.out.println(iter.next());
@@ -312,18 +303,14 @@ public class Performance extends javax.swing.JPanel {
         BufferedWriter f;
 		try {
 			f = new BufferedWriter(new FileWriter("c:/resultados.txt"));
-			
 			f.write("Test Generado el "+ dia + "/" + mes + "/" + anio + " a las: " + hora + ":" +minutos + ":" +segundos);
 	        f.newLine();
 	        f.write(jsonObject.toString());
 	        f.flush();
 	        f.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			
-
     }//GEN-LAST:event_btExportarActionPerformed
 
 
