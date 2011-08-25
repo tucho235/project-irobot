@@ -1,3 +1,10 @@
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Vector;
+import lejos.nxt.Motor;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -24,6 +31,7 @@ public class Performance extends javax.swing.JPanel {
 	/** Creates new form performance */
     public Performance() {
         initComponents();
+        tests = new ArrayList<Test>();
     }
 
     /** This method is called from within the constructor to
@@ -51,10 +59,19 @@ public class Performance extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btNuevoTest.setText("Nuevo Test");
-        btNuevoTest.setEnabled(false);
+        btNuevoTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNuevoTestActionPerformed(evt);
+            }
+        });
 
         btFinalizar.setText("Finalizar Test");
         btFinalizar.setEnabled(false);
+        btFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btFinalizarActionPerformed(evt);
+            }
+        });
 
         btExportar.setText("Exportar");
         btExportar.setEnabled(false);
@@ -92,9 +109,19 @@ public class Performance extends javax.swing.JPanel {
 
         btAvanzar.setText("Avanzar");
         btAvanzar.setEnabled(false);
+        btAvanzar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAvanzarActionPerformed(evt);
+            }
+        });
 
         btSensar.setText("Sensar");
         btSensar.setEnabled(false);
+        btSensar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSensarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/irobot.png"))); // NOI18N
 
@@ -186,6 +213,74 @@ public class Performance extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btNuevoTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoTestActionPerformed
+        // TODO add your handling code here:
+        btFinalizar.setEnabled(true);
+        btSensar.setEnabled(true);
+        btExportar.setEnabled(false);
+        delta = (Integer)jsGrados.getValue();
+        jsGrados.setEnabled(false);
+        currentTest = new Test(idTest,itTest,delta);
+        tests.add(currentTest);
+    }//GEN-LAST:event_btNuevoTestActionPerformed
+
+    private void btSensarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSensarActionPerformed
+        // TODO add your handling code here:
+        currentTest.setTiempoLuz(0);
+        currentTest.setTiempoTacto(0);
+        currentTest.setTiempoUltrasonido(0);
+//        Thread t = new Thread(new Runnable() {
+//	    	public void run() {
+//    			while (true){
+//    				if ((clik) && (conectado)){
+//    					System.out.println("conectado: "+conectado+", clik: "+clik);
+//    					imprimir();
+//    					moverMotores();
+//    					if (jcheck.isSelected()){
+//    						actualizarSensores();
+//    					}
+//    				}
+//    				try {
+//    					if (mejorado){
+//    						Thread.sleep(400); //Opcion 2;
+//    					} else {
+//    						Thread.sleep(1); // Opcion 1;
+//    					}
+//						
+//					} catch (InterruptedException e) {
+//						e.printStackTrace();
+//					}
+//    			}
+//    		}
+//	    }, "Thread para capturar el clik del mouse en el joystick y mover los motores");
+//	    t.start();
+        btAvanzar.setEnabled(true);
+        btSensar.setEnabled(false);
+        btFinalizar.setEnabled(true);
+//        itTest++;
+    }//GEN-LAST:event_btSensarActionPerformed
+
+    private void btAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAvanzarActionPerformed
+        // TODO add your handling code here:
+        itTest++;
+        btAvanzar.setEnabled(false);
+        btSensar.setEnabled(true);
+//        Motor.A.rotate(delta);
+//        Motor.B.rotate(delta);
+        currentTest = new Test(idTest,itTest,delta);
+        tests.add(currentTest);
+    }//GEN-LAST:event_btAvanzarActionPerformed
+
+    private void btFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinalizarActionPerformed
+        // TODO add your handling code here:
+        idTest++;
+        btNuevoTest.setEnabled(true);
+        btFinalizar.setEnabled(false);
+        btAvanzar.setEnabled(false);
+        btSensar.setEnabled(false);
+        btExportar.setEnabled(true);
+    }//GEN-LAST:event_btFinalizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAvanzar;
@@ -202,4 +297,9 @@ public class Performance extends javax.swing.JPanel {
     private javax.swing.JProgressBar progressBar;
     // End of variables declaration//GEN-END:variables
 
+    private List<Test> tests;
+    private Test currentTest;
+    private int idTest=1;
+    private int itTest=1;
+    private int delta=0;
 }
