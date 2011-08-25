@@ -98,13 +98,13 @@ public class Test {
 
     public String toString(){
     	return (
-        "idTest" + idTest +
-        "it" + it +
-        "deltaGrados" + deltaGrados +
-        "gradosMotores" + gradosMotores +
-        "tiempoTacto" + tiempoTacto +
-        "tiempoUltrasonido" + tiempoUltrasonido +
-        "tiempoLuz" + tiempoLuz);
+        "idTest " + idTest +
+        " it " + it +
+        " deltaGrados " + deltaGrados +
+        " gradosMotores " + gradosMotores +
+        " tiempoTacto " + tiempoTacto +
+        " tiempoUltrasonido " + tiempoUltrasonido +
+        " tiempoLuz " + tiempoLuz);
     }
 
 
