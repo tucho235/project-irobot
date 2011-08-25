@@ -1,7 +1,9 @@
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import lejos.nxt.Motor;
 
@@ -286,6 +288,14 @@ public class Performance extends javax.swing.JPanel {
         while (iter.hasNext()){
           System.out.println(iter.next());
         }
+        JSONArray jsonArray = new JSONArray(tests);
+        System.out.println("====Array : "+jsonArray);
+
+        Map map = new HashMap();
+        map.put("beanlist", jsonArray);
+
+        JSONObject jsonObject = new JSONObject(map);
+        System.out.println("==== json :"+jsonObject);
     }//GEN-LAST:event_btExportarActionPerformed
 
 
