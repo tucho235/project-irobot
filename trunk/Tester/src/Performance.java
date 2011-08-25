@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import javax.swing.JOptionPane;
 import lejos.nxt.Motor;
 
 /*
@@ -74,6 +76,11 @@ public class Performance extends javax.swing.JPanel {
 
         btExportar.setText("Exportar");
         btExportar.setEnabled(false);
+        btExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExportarActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(modeloTabla);
         jTable1.setColumnSelectionAllowed(true);
@@ -189,20 +196,26 @@ public class Performance extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btNuevoTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoTestActionPerformed
-        // TODO add your handling code here:
+    private void nuevoTest(){
         itTest = 1;
-//        System.out.println("itTest: "+itTest);
-    	btFinalizar.setEnabled(true);
+        btFinalizar.setEnabled(true);
         btSensar.setEnabled(true);
         btExportar.setEnabled(false);
         btNuevoTest.setEnabled(false);
         delta = (Integer)jsGrados.getValue();
         jsGrados.setEnabled(false);
         currentTest = new Test(idTest,itTest,delta);
-//        System.err.println(currentTest.toString());
         tests.add(currentTest);
         ((ModeloTablaTest)jTable1.getModel()).agregarTest(currentTest);
+    }
+    private void btNuevoTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoTestActionPerformed
+
+        if ((Integer)jsGrados.getValue() != 0){
+            nuevoTest();
+        } else {
+           JOptionPane.showMessageDialog(null, "No puede generar Test con \"Delta Grados\" en 0 (cero).\nPor favor modifique el valor!"
+            ,"Importante",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btNuevoTestActionPerformed
 
     private void btSensarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSensarActionPerformed
@@ -266,6 +279,14 @@ public class Performance extends javax.swing.JPanel {
         btSensar.setEnabled(false);
         btExportar.setEnabled(true);
     }//GEN-LAST:event_btFinalizarActionPerformed
+
+    private void btExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportarActionPerformed
+        // generar un archivo con el reslutado de los Tests
+        Iterator iter = tests.iterator();
+        while (iter.hasNext()){
+          System.out.println(iter.next());
+        }
+    }//GEN-LAST:event_btExportarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
