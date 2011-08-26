@@ -1,5 +1,4 @@
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Calendar;
 import lejos.nxt.LightSensor;
@@ -91,8 +90,8 @@ public class PanelConector extends javax.swing.JPanel {
 
         jlEstado.setFont(new java.awt.Font("Tahoma", 2, 11));
         jlEstado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jlEstado.setText("Estado");
-        jlEstado.setToolTipText("Estado");
+        jlEstado.setText("Desconectado");
+        jlEstado.setToolTipText("Desconectado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -120,7 +119,6 @@ public class PanelConector extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDesconectarActionPerformed
-        // TODO add your handling code here:
         PanelConector.conectado = false;
             botonDesconectar.setEnabled(PanelConector.conectado);
             botonConectar.setEnabled(!PanelConector.conectado);
@@ -139,7 +137,7 @@ public class PanelConector extends javax.swing.JPanel {
             int segundos = calendario.get(Calendar.SECOND);
             
             jlEstado.setText("Desconectado: "+hora + ":" + minutos + ":" + segundos);
-
+            jlEstado.setToolTipText("Desconectado");
 //            jTA_Log.append("----------------\n");
 //            jTA_Log.append("Desconectado al NXT "+ Calendar.HOUR_OF_DAY + ":" +
 //                            Calendar.MINUTE + ":" + Calendar.SECOND + "\n");
@@ -147,38 +145,47 @@ public class PanelConector extends javax.swing.JPanel {
     }//GEN-LAST:event_botonDesconectarActionPerformed
 
     private void botonConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConectarActionPerformed
-        // TODO add your handling code here:
-        PanelConector.conectado = true;
-            botonConectar.setEnabled(!PanelConector.conectado);
-            botonDesconectar.setEnabled(PanelConector.conectado);
+        botonConectar.setEnabled(!PanelConector.conectado);
+        botonDesconectar.setEnabled(PanelConector.conectado);
+        jlEstado.setText("Conectando...");
+        jlEstado.setToolTipText("Conectando...");
+        try {
+        	conn = new NXTConnector();
+        	if (!conn.connectTo("NXT", NXTComm.LCP)) {
+                System.err.println("Conexion Fallida");
+                jlEstado.setText("Conexion Fallida");
+                jlEstado.setToolTipText("Conexion Fallida");
+                //System.exit(1);
+                PanelConector.conectado = false;
+                botonDesconectar.setEnabled(PanelConector.conectado);
+                botonConectar.setEnabled(!PanelConector.conectado);
+            } else {
+                PanelConector.conectado = true;
+                NXTCommand.getSingleton().setNXTComm(conn.getNXTComm());
+                Motor.A.resetTachoCount();
+                Motor.B.resetTachoCount();
+                sensorUltrasonico   = new UltrasonicSensor(SensorPort.S1);
+                sensorLuz           = new LightSensor(SensorPort.S2);
+                sensorTacto         = new TouchSensor(SensorPort.S3);
+                
+                Calendar calendario = Calendar.getInstance();
+                int hora =calendario.get(Calendar.HOUR_OF_DAY);
+                int minutos = calendario.get(Calendar.MINUTE);
+                int segundos = calendario.get(Calendar.SECOND);
+                
+                jlEstado.setText("Conectado: " + hora + ":" + minutos + ":" + segundos);
+                jlEstado.setToolTipText("Conectado");
+            }
+        } catch (Exception e){
+    		e.printStackTrace();
+    	}
 
-            conn = new NXTConnector();
-
-        if (!conn.connectTo("NXT", NXTComm.LCP)) {
-            System.err.println("Conexion Fallida");
-            jlEstado.setText("Conexion Fallida");
-            //System.exit(1);
-            PanelConector.conectado = false;
-            botonDesconectar.setEnabled(PanelConector.conectado);
-            botonConectar.setEnabled(!PanelConector.conectado);
-        }
-        NXTCommand.getSingleton().setNXTComm(conn.getNXTComm());
-        Motor.A.resetTachoCount();
-        Motor.B.resetTachoCount();
-        sensorUltrasonico   = new UltrasonicSensor(SensorPort.S1);
-        sensorLuz           = new LightSensor(SensorPort.S2);
-        sensorTacto         = new TouchSensor(SensorPort.S3);
         
-        Calendar calendario = Calendar.getInstance();
-        int hora =calendario.get(Calendar.HOUR_OF_DAY);
-        int minutos = calendario.get(Calendar.MINUTE);
-        int segundos = calendario.get(Calendar.SECOND);
-        
-        jlEstado.setText("Conectado: " + hora + ":" + minutos + ":" + segundos);
 
-//        jTA_Log.setText("Conectado al NXT "+ Calendar.HOUR_OF_DAY + ":" +
-//                    Calendar.MINUTE + ":" + Calendar.SECOND + "\n");
-//        jTA_Log.append("----------------\n");
+//            jTA_Log.setText("Conectado al NXT "+ Calendar.HOUR_OF_DAY + ":" +
+//                        Calendar.MINUTE + ":" + Calendar.SECOND + "\n");
+//            jTA_Log.append("----------------\n");
+
     }//GEN-LAST:event_botonConectarActionPerformed
 
 
