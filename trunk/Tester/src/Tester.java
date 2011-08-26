@@ -1,6 +1,8 @@
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /*
@@ -56,9 +58,10 @@ public class Tester extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+    	logoIE = new javax.swing.ImageIcon(getClass().getResource("/iexplore.gif"));
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+//        jLabel1 = new javax.swing.JLabel();
+        jLabel1= new HyperLinkLabel("http://project-irobot.com.ar",logoIE,"http://project-irobot.com.ar");
         botonSalir = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         performance1 = new Performance();
@@ -71,7 +74,7 @@ public class Tester extends javax.swing.JFrame {
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jLabel1.setText("<html><a href=\\\"http://Project-iRobot.com.ar\">http://Project-iRobot.com.ar</a></html>");
+//        jLabel1.setText("<html><a href=\\\"http://Project-iRobot.com.ar\">http://Project-iRobot.com.ar</a></html>");
 
         botonSalir.setText("Salir");
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -86,8 +89,8 @@ public class Tester extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 514, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 474, Short.MAX_VALUE)
                 .addComponent(botonSalir)
                 .addContainerGap())
         );
@@ -153,11 +156,13 @@ public class Tester extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir;
     private ControlRemoto controlRemoto1;
-    private javax.swing.JLabel jLabel1;
+//    private javax.swing.JLabel jLabel1;
+    private HyperLinkLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private PanelConector panelConector1;
     private Performance performance1;
+    private ImageIcon logoIE;
     // End of variables declaration//GEN-END:variables
 
 }

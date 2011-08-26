@@ -27,7 +27,11 @@ import lejos.nxt.Motor;
  */
 public class ControlRemoto extends javax.swing.JPanel implements MouseListener, MouseMotionListener {
 
-    /** Creates new form ControlRemoto */
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 250820112113L;
+	/** Creates new form ControlRemoto */
     public ControlRemoto() {
         initComponents();
         jcheck.setSelected(true);
@@ -37,41 +41,40 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
 
         Thread t = new Thread(new Runnable() {
             public void run() {
-                    while (true){
-                            if ((clik) && (PanelConector.estaConectado())){
-                                    imprimir();
-                                    moverMotores();
-                                    if (jcheck.isSelected()){
-                                            actualizarSensores();
-                                    }
-                            }
-                            try {
-                                    if (mejorado){
-                                            Thread.sleep(400); //Opcion 2;
-                                    } else {
-                                            Thread.sleep(1); // Opcion 1;
-                                    }
-
-                                    } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                    }
+                while (true){
+                    if ((clik) && (PanelConector.estaConectado())){
+                    	imprimir();
+                        moverMotores();
+                        if (jcheck.isSelected()){
+                                actualizarSensores();
+                        }
+                    } 
+                    try {
+                        if (mejorado){
+                                Thread.sleep(400); //Opcion 2;
+                        } else {
+                                Thread.sleep(1); // Opcion 1;
+                        }
+                    } catch (InterruptedException e) {
+                            e.printStackTrace();
                     }
+                }
             }
         }, "Thread para capturar el clik del mouse en el joystick y mover los motores");
         t.start();
 
         Thread t2 = new Thread(new Runnable() {
             public void run() {
-                    while (true){
-                            if (PanelConector.estaConectado()){
-                                    keepAlive();
-                            }
-                            try {
-                                    Thread.sleep(2500);
-                            } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                            }
+                while (true){
+                    if (PanelConector.estaConectado()){
+                            keepAlive();
                     }
+                    try {
+                            Thread.sleep(2500);
+                    } catch (InterruptedException e) {
+                            e.printStackTrace();
+                    }
+                }
             }
         }, "Thread para mantener despierta la conexi�n");
 	t2.start();
@@ -85,14 +88,20 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
     	clik = false;
     	posX = 0;
     	posY = 0;
-    	Motor.A.stop();
-    	Motor.B.stop();
+    	if (PanelConector.estaConectado()){
+    		try {
+	    		Motor.A.stop();
+	    		Motor.B.stop();
+	    	} catch (Exception ex){
+	    		ex.printStackTrace();
+	    	}
+    	}
     }
 
     public void mousePressed(MouseEvent e){
     	clik = true;
     	posX = (e.getX()-100)-((e.getX()-100) % 10);
-	posY = (-(e.getY()-100))-( -(e.getY()-100)%10);
+    	posY = (-(e.getY()-100))-( -(e.getY()-100) % 10);
     }
 
     public void mouseDragged(MouseEvent e){
@@ -106,13 +115,14 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
     public void mouseMoved(MouseEvent e) { }
 
     public void imprimir(){
-            if (clik){
-                    System.out.println("X: "+posX);
-                    System.out.println("Y: "+posY);
-            }
+        if (clik){
+            System.out.println("X: "+posX);
+            System.out.println("Y: "+posY);
+        }
     }
 
     private void moverMotores(){
+    	try {
             int gradosA=0;
             int gradosB=0;
             if ((posX == 0) && (posY > 0)){ // avanza hacia adelante, A = B
@@ -188,10 +198,11 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
                             }
                     }
             }
-
             logea("Mover Motor A "+gradosA+"°\n");
             logea("Mover Motor B "+gradosB+"°\n");
-
+    	} catch (Exception e){
+    		e.printStackTrace();
+    	}
     }
 
     private void logea(String linea){
@@ -210,7 +221,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
     }
 
     public void keepAlive(){
-            Motor.A.getTachoCount();
+        Motor.A.getTachoCount();
     }
 
 
