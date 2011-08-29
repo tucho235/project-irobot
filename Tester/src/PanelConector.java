@@ -157,15 +157,13 @@ public class PanelConector extends javax.swing.JPanel {
                 jlEstado.setToolTipText("Conexion Fallida");
                 //System.exit(1);
                 PanelConector.conectado = false;
-                botonDesconectar.setEnabled(PanelConector.conectado);
-                botonConectar.setEnabled(!PanelConector.conectado);
             } else {
                 PanelConector.conectado = true;
                 NXTCommand.getSingleton().setNXTComm(conn.getNXTComm());
                 Motor.A.resetTachoCount();
                 Motor.B.resetTachoCount();
-                sensorUltrasonico   = new UltrasonicSensor(SensorPort.S1);
-                sensorLuz           = new LightSensor(SensorPort.S2);
+                sensorUltrasonico   = new UltrasonicSensor(SensorPort.S2);
+                sensorLuz           = new LightSensor(SensorPort.S1);
                 sensorTacto         = new TouchSensor(SensorPort.S3);
                 
                 Calendar calendario = Calendar.getInstance();
@@ -176,6 +174,9 @@ public class PanelConector extends javax.swing.JPanel {
                 jlEstado.setText("Conectado: " + hora + ":" + minutos + ":" + segundos);
                 jlEstado.setToolTipText("Conectado");
             }
+        	botonDesconectar.setEnabled(PanelConector.conectado);
+            botonConectar.setEnabled(!PanelConector.conectado);
+
         } catch (Exception e){
     		e.printStackTrace();
     	}
