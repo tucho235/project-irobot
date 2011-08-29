@@ -212,14 +212,14 @@ public class Performance extends javax.swing.JPanel {
         btNuevoTest.setEnabled(false);
         delta = (Integer)jsGrados.getValue();
         /* Despu�s de medir cuantos � equivalen 10 cm volver a descomentar */
-//        jsGrados.setEnabled(false); 
+        jsGrados.setEnabled(false); 
         currentTest = new Test(idTest,itTest,delta);
         tests.add(currentTest);
         ((ModeloTablaTest)jTable1.getModel()).agregarTest(currentTest);
     }
     
     private void btNuevoTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoTestActionPerformed
-    	if (PanelConector.estaConectado()){
+    	if (PanelConector.estaConectado() || !hayRobot){
     		if ((Integer)jsGrados.getValue() != 0){
 	            nuevoTest();
 	        } else {
@@ -234,16 +234,19 @@ public class Performance extends javax.swing.JPanel {
 
     private void btSensarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSensarActionPerformed
 
-    	currentTest.setTiempoLuz(idTest * itTest);
-        currentTest.setTiempoTacto(2 * idTest * itTest);
-        currentTest.setTiempoUltrasonido(3 * idTest * itTest);
-        ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
-        
+//    	currentTest.setTiempoLuz(idTest * itTest);
+//        currentTest.setTiempoTacto(2 * idTest * itTest);
+//        currentTest.setTiempoUltrasonido(3 * idTest * itTest);
+//        ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
         
         Thread t = new Thread(new Runnable() {
             public void run() {
             	progressBar.setValue(0);
-            	
+            	try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Performance.class.getName()).log(Level.SEVERE, null, ex);
+                }
             	float gradosA;
             	float gradosB;
             	if (hayRobot){
@@ -253,16 +256,15 @@ public class Performance extends javax.swing.JPanel {
             		gradosA = Float.parseFloat(Integer.toString((Integer)jsGrados.getValue()));
             		gradosB = Float.parseFloat(Integer.toString((Integer)jsGrados.getValue()));
             	}
-            	
             	currentTest.setGradosMotores((gradosA + gradosB)/2);
             	((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+                progressBar.setValue(1);
+                
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Performance.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                progressBar.setValue(1);
-                
             	Calendar inicio = Calendar.getInstance();
             	if (hayRobot){
             		PanelConector.getSensorTacto().isPressed();
@@ -271,13 +273,13 @@ public class Performance extends javax.swing.JPanel {
                 long tiempoTacto = fin.getTimeInMillis() - inicio.getTimeInMillis();
                 currentTest.setTiempoTacto(tiempoTacto);
                 ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+                progressBar.setValue(2);
+                
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Performance.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                progressBar.setValue(2);
                 inicio = Calendar.getInstance();
                 if (hayRobot){
                 	PanelConector.getSensorUltrasonico().getDistance();
@@ -286,13 +288,13 @@ public class Performance extends javax.swing.JPanel {
                 long tiempoUltrasonido = fin.getTimeInMillis() - inicio.getTimeInMillis();
                 currentTest.setTiempoUltrasonido(tiempoUltrasonido);
                 ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+                progressBar.setValue(3);
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Performance.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
-                progressBar.setValue(3);
                 inicio = Calendar.getInstance();
                 if (hayRobot){
                 	PanelConector.getSensorLuz().readNormalizedValue();
@@ -301,12 +303,6 @@ public class Performance extends javax.swing.JPanel {
                 long tiempoLuz = fin.getTimeInMillis() - inicio.getTimeInMillis();
                 currentTest.setTiempoLuz(tiempoLuz);
                 ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Performance.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
                 progressBar.setValue(4);
             }
         }, "Thread para Sensar");
@@ -322,8 +318,8 @@ public class Performance extends javax.swing.JPanel {
         btFinalizar.setEnabled(false);
         btSensar.setEnabled(true);
         if (hayRobot){
-        	Motor.A.rotate(delta);
-        	Motor.B.rotate(delta);
+        	Motor.A.rotate(delta, true);
+        	Motor.B.rotate(delta, true);
         }
         
         currentTest = new Test(idTest,itTest,delta);
@@ -339,6 +335,7 @@ public class Performance extends javax.swing.JPanel {
         btAvanzar.setEnabled(false);
         btSensar.setEnabled(false);
         btExportar.setEnabled(true);
+        jsGrados.setEnabled(true);
     }//GEN-LAST:event_btFinalizarActionPerformed
 
     private void btExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportarActionPerformed
@@ -356,17 +353,23 @@ public class Performance extends javax.swing.JPanel {
         System.out.println("==== json :"+jsonObject);
         
         Calendar calendario = Calendar.getInstance();
+        String diaS,mesS,horaS,minutosS,segundosS="";
         int dia = calendario.get(Calendar.DAY_OF_MONTH);
+        diaS = ((dia <= 9 ) ? "0"+dia : ""+dia);
         int mes = calendario.get(Calendar.MONTH) +1;
+        mesS = ((mes <= 9 ) ? "0"+mes : ""+mes);
         int anio = calendario.get(Calendar.YEAR);
         int hora =calendario.get(Calendar.HOUR_OF_DAY);
+        horaS = ((hora <= 9 ) ? "0"+hora : ""+hora);
         int minutos = calendario.get(Calendar.MINUTE);
+        minutosS = ((minutos <= 9 ) ? "0"+minutos : ""+minutos);
         int segundos = calendario.get(Calendar.SECOND);
+        segundosS = ((segundos <= 9 ) ? "0"+segundos : ""+segundos);
         
         BufferedWriter f;
 		try {
-			f = new BufferedWriter(new FileWriter("c:/resultados ("+dia+"-"+mes+"-"+anio+" "+hora+"."+minutos+"."+segundos+").txt"));
-			f.write("Test Generado el "+ dia + "/" + mes + "/" + anio + " a las: " + hora + ":" +minutos + ":" +segundos);
+			f = new BufferedWriter(new FileWriter("c:/resultados ("+anio+"-"+mesS+"-"+diaS+" "+horaS+"."+minutosS+"."+segundosS+").txt"));
+			f.write("Test Generado el "+ diaS + "/" + mesS + "/" + anio + " a las: " + horaS + ":" +minutosS + ":" +segundosS);
 	        f.newLine();
 	        f.write(jsonObject.toString());
 	        f.flush();
@@ -398,7 +401,7 @@ public class Performance extends javax.swing.JPanel {
     private int itTest=1;
     private int delta=0;
     
-    private boolean hayRobot=false;
+    private boolean hayRobot=true;//false;
     
     private ModeloTablaTest modeloTabla = new ModeloTablaTest();
 }

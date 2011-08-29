@@ -34,6 +34,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
 	/** Creates new form ControlRemoto */
     public ControlRemoto() {
         initComponents();
+        jTA_Log.setEditable(true);
         jcheck.setSelected(true);
 
         jP_Joystick.addMouseListener(this);
@@ -51,9 +52,9 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
                     } 
                     try {
                         if (mejorado){
-                                Thread.sleep(400); //Opcion 2;
+                                Thread.sleep(500); //Opcion 2;
                         } else {
-                                Thread.sleep(1); // Opcion 1;
+                                Thread.sleep(100); // Opcion 1;
                         }
                     } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -78,9 +79,8 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
             }
         }, "Thread para mantener despierta la conexi�n");
 	t2.start();
-
-
     }
+    
 
     public void mouseClicked(MouseEvent e){	}
 
@@ -167,12 +167,17 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
                     Motor.A.rotate(gradosA, true);
                     Motor.B.rotate(gradosB, true);
             } else {
-                    // Opcion 2 // Para esta opcion hay que poner el sleep en 400 en el Thread t
+                    gradosA=gradosA*10;
+                    gradosB=gradosB*10;
+            		// Opcion 2 // Para esta opcion hay que poner el sleep en 400 en el Thread t
                     Motor.A.setSpeed(Math.abs(gradosA));
-                    Motor.A.setSpeed(Math.abs(gradosB));
+                    Motor.B.setSpeed(Math.abs(gradosB));
+                    System.out.println("velocidadA: "+gradosA);
+                    System.out.println("velocidadB: "+gradosB);
                     if (Motor.A.isMoving() && Motor.B.isMoving()){
                             if (gradosA < 0) {
                                     Motor.A.backward();
+                                    
                             }
                             if (gradosB < 0){
                                     Motor.B.backward();
@@ -180,11 +185,14 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
                     } else {
                             if (gradosA < 0) {
                                     Motor.A.backward();
+//                                    Motor.B.backward();
                             } else {
                                     if (gradosA > 0){
                                             Motor.A.forward();
+//                                            Motor.B.forward();
                                     } else {
                                             Motor.A.stop();
+//                                            Motor.B.stop();
                                     }
                             }
                             if (gradosB < 0){
@@ -208,7 +216,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
     private void logea(String linea){
             jTA_Log.append(linea);
             jTA_Log.getCaret().setDot( jTA_Log.getText().length() );
-    jScrollPane1.scrollRectToVisible(jTA_Log.getVisibleRect() );
+            jScrollPane1.scrollRectToVisible(jTA_Log.getVisibleRect() );
     }
 
     private void actualizarSensores(){
@@ -310,7 +318,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
 
         jcheck.setText("Sensar?");
 
-        jTA_Log.setColumns(20);
+        jTA_Log.setColumns(40);
         jTA_Log.setEditable(false);
         jTA_Log.setRows(5);
         jTA_Log.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
