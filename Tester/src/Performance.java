@@ -401,7 +401,7 @@ public class Performance extends javax.swing.JPanel {
     private int itTest=1;
     private int delta=0;
     
-    private boolean hayRobot=true;//false;
+    private boolean hayRobot=false; //true;
     
     private ModeloTablaTest modeloTabla = new ModeloTablaTest();
 }
