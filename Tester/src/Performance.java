@@ -339,14 +339,14 @@ public class Performance extends javax.swing.JPanel {
     }//GEN-LAST:event_btFinalizarActionPerformed
 
     private void btExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportarActionPerformed
-        Iterator iter = tests.iterator();
+        Iterator<Test> iter = tests.iterator();
         while (iter.hasNext()){
           System.out.println(iter.next());
         }
         JSONArray jsonArray = new JSONArray(tests);
         System.out.println("====Array : "+jsonArray);
 
-        Map map = new HashMap();
+        Map<String, JSONArray> map = new HashMap<String, JSONArray>();
         map.put("testPerformance", jsonArray);
 
         JSONObject jsonObject = new JSONObject(map);
