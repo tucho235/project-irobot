@@ -67,21 +67,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
         }, "Thread para capturar el clik del mouse en el joystick y mover los motores");
         t.start();
 
-        Thread t2 = new Thread(new Runnable() {
-            public void run() {
-                while (true){
-                    if (PanelConector.estaConectado()){
-                            keepAlive();
-                    }
-                    try {
-                            Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                            e.printStackTrace();
-                    }
-                }
-            }
-        }, "Thread para mantener despierta la conexión");
-	t2.start();
+        
     }
     
 
@@ -326,9 +312,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
         jtColor.setText(String.valueOf(PanelConector.getSensorLuz().readNormalizedValue()));//.readColor().name()));
     }
 
-    public void keepAlive(){
-        Motor.A.getTachoCount();
-    }
+    
 
 
 

@@ -118,7 +118,19 @@ public class PanelConector extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDesconectarActionPerformed
+	public static void pausarKeepAlive(boolean b) {
+    	if (b){
+    		t2.interrupt();
+    	} else {
+    		t2.start();
+    	}
+	}
+    
+    public void keepAlive(){
+        Motor.A.getTachoCount();
+    }
+    
+	private void botonDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDesconectarActionPerformed
         PanelConector.conectado = false;
             botonDesconectar.setEnabled(PanelConector.conectado);
             botonConectar.setEnabled(!PanelConector.conectado);
@@ -138,6 +150,8 @@ public class PanelConector extends javax.swing.JPanel {
             
             jlEstado.setText("Desconectado: "+hora + ":" + minutos + ":" + segundos);
             jlEstado.setToolTipText("Desconectado");
+            
+            t2.interrupt();
 //            jTA_Log.append("----------------\n");
 //            jTA_Log.append("Desconectado al NXT "+ Calendar.HOUR_OF_DAY + ":" +
 //                            Calendar.MINUTE + ":" + Calendar.SECOND + "\n");
@@ -174,16 +188,28 @@ public class PanelConector extends javax.swing.JPanel {
                 
                 jlEstado.setText("Conectado: " + hora + ":" + minutos + ":" + segundos);
                 jlEstado.setToolTipText("Conectado");
+                
+                t2 = new Thread(new Runnable() {
+                    public void run() {
+                        while (true){
+                            if (PanelConector.estaConectado()){
+                                    keepAlive();
+                            }
+                            try {
+                                    Thread.sleep(10000);
+                            } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                            }
+                        }
+                    }
+                }, "Thread para mantener despierta la conexión");
+                t2.start();
             }
         	botonDesconectar.setEnabled(PanelConector.conectado);
             botonConectar.setEnabled(!PanelConector.conectado);
-
         } catch (Exception e){
     		e.printStackTrace();
     	}
-
-        
-
 //            jTA_Log.setText("Conectado al NXT "+ Calendar.HOUR_OF_DAY + ":" +
 //                        Calendar.MINUTE + ":" + Calendar.SECOND + "\n");
 //            jTA_Log.append("----------------\n");
@@ -203,4 +229,5 @@ public class PanelConector extends javax.swing.JPanel {
     static private UltrasonicSensor sensorUltrasonico;
     static private LightSensor sensorLuz;
     static private TouchSensor sensorTacto;
+    static Thread t2;
 }
