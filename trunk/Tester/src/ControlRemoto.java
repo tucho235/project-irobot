@@ -1,8 +1,11 @@
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 import lejos.nxt.Motor;
 
@@ -338,7 +341,26 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jP_Joystick = new javax.swing.JPanel();
+        jP_Joystick = new javax.swing.JPanel(){
+            private static final long serialVersionUID = 1L;
+            public void paint (Graphics g) {
+                //super.paint (g);
+                try {
+                    imagen = ImageIO.read(getClass().getResource("fondo.png"));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                g.drawImage(imagen, 0, 0, getWidth(), getHeight(),this);
+                if (imagen != null){
+                    setOpaque(false);
+                } else {
+                    setOpaque(true);
+                }
+
+                super.paint (g);
+            }
+        }
+        ;
         jL_MotorA = new javax.swing.JLabel();
         jL_MotorB = new javax.swing.JLabel();
         jL_MotorC = new javax.swing.JLabel();

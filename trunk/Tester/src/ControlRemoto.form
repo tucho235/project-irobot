@@ -128,6 +128,9 @@
           <Dimension value="[200, 200]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    private static final long serialVersionUID = 1L;&#xa;    public void paint (Graphics g) {&#xa;        //super.paint (g);&#xa;        try {&#xa;            imagen = ImageIO.read(getClass().getResource(&quot;fondo.png&quot;));&#xa;        } catch (IOException ex) {&#xa;            ex.printStackTrace();&#xa;        }&#xa;        g.drawImage(imagen, 0, 0, getWidth(), getHeight(),this);&#xa;        if (imagen != null){&#xa;            setOpaque(false);&#xa;        } else {&#xa;            setOpaque(true);&#xa;        }&#xa;&#xa;        super.paint (g);&#xa;    }&#xa;}&#xa;"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
