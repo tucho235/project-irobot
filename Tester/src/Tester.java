@@ -85,6 +85,17 @@ public class Tester extends javax.swing.JFrame {
         jLabel1.setText("<html><a href=\\\"http://Project-iRobot.com.ar\">http://Project-iRobot.com.ar</a></html>");
         jLabel1.setToolTipText("Abre el Blog en tu navegador favorito");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
+        });
 
         botonSalir.setText("Salir");
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +159,31 @@ public class Tester extends javax.swing.JFrame {
         salir();
     }//GEN-LAST:event_botonSalirActionPerformed
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                try {
+                    desktop.browse(new URI("http://project-irobot.com.ar"));
+                } catch (URISyntaxException e1) {
+                    e1.printStackTrace();
+                }
+            } catch (IOException eio) {
+                eio.printStackTrace();
+            }
+        } else {
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        rc = jLabel1.getForeground();
+        jLabel1.setForeground(Color.blue);
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        jLabel1.setForeground(rc);
+    }//GEN-LAST:event_jLabel1MouseExited
+
     /**
     * @param args the command line arguments
     */
@@ -172,5 +208,5 @@ public class Tester extends javax.swing.JFrame {
     private PanelConector panelConector1;
     private Performance performance1;
     // End of variables declaration//GEN-END:variables
-
+    private Color rc;
 }
