@@ -243,31 +243,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jP_Joystick = new javax.swing.JPanel(){
-        	/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			public void paint (Graphics g) {
-        		//super.paint (g);
-        		try {
-                    imagen = ImageIO.read(getClass().getResource("fondo.png"));
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                
-                g.drawImage(imagen, 0, 0, getWidth(), getHeight(),this);
-                if (imagen != null){
-                	setOpaque(false);
-                } else {
-                	setOpaque(true);
-                }
-                
-                super.paint (g);		
-				}
-			
-        };
+        jP_Joystick = new javax.swing.JPanel();
         jL_MotorA = new javax.swing.JLabel();
         jL_MotorB = new javax.swing.JLabel();
         jL_MotorC = new javax.swing.JLabel();
@@ -318,7 +294,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
 
         jcheck.setText("Sensar?");
 
-        jTA_Log.setColumns(40);
+        jTA_Log.setColumns(20);
         jTA_Log.setEditable(false);
         jTA_Log.setRows(5);
         jTA_Log.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

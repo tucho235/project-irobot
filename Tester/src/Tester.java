@@ -66,37 +66,9 @@ public class Tester extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	
-    	logoIE = new javax.swing.ImageIcon(getClass().getResource("/ie9_24.png"));//iexplore.gif"));
+
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel("<html><u>http://project-irobot.com.ar</u></html>");
-        jLabel1.setIcon(logoIE);
-        jLabel1.addMouseListener(new MouseAdapter() {
-        	Color rc;
-        	public void mouseClicked(MouseEvent e) {
-        		if (Desktop.isDesktopSupported()) {
-                    Desktop desktop = Desktop.getDesktop();
-                    try {
-                            try {
-								desktop.browse(new URI("http://project-irobot.com.ar"));
-							} catch (URISyntaxException e1) {
-								e1.printStackTrace();
-							}
-                    } catch (IOException eio) {
-                    }
-	            } else {
-	            }
-        	}
-        	public void mouseEntered(MouseEvent e){
-        		rc = jLabel1.getForeground();
-        		jLabel1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        		jLabel1.setForeground(Color.blue);
-    		}
-    		public void mouseExited(MouseEvent e){
-    			jLabel1.setForeground(rc);
-    			jLabel1.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    		}
-        });
+        jLabel1 = new javax.swing.JLabel();
         botonSalir = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         performance1 = new Performance();
@@ -109,7 +81,10 @@ public class Tester extends javax.swing.JFrame {
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-//        jLabel1.setText("<html><a href=\\\"http://Project-iRobot.com.ar\">http://Project-iRobot.com.ar</a></html>");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IE9_24.png"))); // NOI18N
+        jLabel1.setText("<html><a href=\\\"http://Project-iRobot.com.ar\">http://Project-iRobot.com.ar</a></html>");
+        jLabel1.setToolTipText("Abre el Blog en tu navegador favorito");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         botonSalir.setText("Salir");
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -122,10 +97,10 @@ public class Tester extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 474, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 490, Short.MAX_VALUE)
                 .addComponent(botonSalir)
                 .addContainerGap())
         );
@@ -196,7 +171,6 @@ public class Tester extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private PanelConector panelConector1;
     private Performance performance1;
-    private ImageIcon logoIE;
     // End of variables declaration//GEN-END:variables
 
 }
