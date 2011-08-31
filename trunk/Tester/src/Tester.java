@@ -6,7 +6,6 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import javax.swing.JOptionPane;
 
 /*
@@ -73,6 +72,7 @@ public class Tester extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(".:: iRobot ::. - Tester");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/favicon.png")).getImage());
         setResizable(false);
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
