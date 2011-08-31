@@ -1,6 +1,14 @@
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Desktop;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -58,10 +66,37 @@ public class Tester extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	logoIE = new javax.swing.ImageIcon(getClass().getResource("/iexplore.gif"));
+    	
+    	logoIE = new javax.swing.ImageIcon(getClass().getResource("/ie9_24.png"));//iexplore.gif"));
         jPanel1 = new javax.swing.JPanel();
-//        jLabel1 = new javax.swing.JLabel();
-        jLabel1= new HyperLinkLabel("http://project-irobot.com.ar",logoIE,"http://project-irobot.com.ar");
+        jLabel1 = new javax.swing.JLabel("<html><u>http://project-irobot.com.ar</u></html>");
+        jLabel1.setIcon(logoIE);
+        jLabel1.addMouseListener(new MouseAdapter() {
+        	Color rc;
+        	public void mouseClicked(MouseEvent e) {
+        		if (Desktop.isDesktopSupported()) {
+                    Desktop desktop = Desktop.getDesktop();
+                    try {
+                            try {
+								desktop.browse(new URI("http://project-irobot.com.ar"));
+							} catch (URISyntaxException e1) {
+								e1.printStackTrace();
+							}
+                    } catch (IOException eio) {
+                    }
+	            } else {
+	            }
+        	}
+        	public void mouseEntered(MouseEvent e){
+        		rc = jLabel1.getForeground();
+        		jLabel1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        		jLabel1.setForeground(Color.blue);
+    		}
+    		public void mouseExited(MouseEvent e){
+    			jLabel1.setForeground(rc);
+    			jLabel1.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    		}
+        });
         botonSalir = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         performance1 = new Performance();
@@ -156,8 +191,7 @@ public class Tester extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir;
     private ControlRemoto controlRemoto1;
-//    private javax.swing.JLabel jLabel1;
-    private HyperLinkLabel jLabel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private PanelConector panelConector1;
