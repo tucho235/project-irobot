@@ -70,12 +70,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jlEstado">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="11" style="2"/>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="cc" red="33" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Estado"/>
-        <Property name="toolTipText" type="java.lang.String" value="Estado"/>
+        <Property name="text" type="java.lang.String" value="Desconectado"/>
+        <Property name="toolTipText" type="java.lang.String" value="Desconectado"/>
       </Properties>
     </Component>
   </SubComponents>

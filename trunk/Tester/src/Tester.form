@@ -62,10 +62,10 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="142" max="-2" attributes="0"/>
-                  <EmptySpace pref="514" max="32767" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="490" max="32767" attributes="0"/>
                   <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -87,7 +87,14 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IE9_24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;a href=\&quot;http://Project-iRobot.com.ar&quot;&gt;http://Project-iRobot.com.ar&lt;/a&gt;&lt;/html&gt;"/>
+            <Property name="toolTipText" type="java.lang.String" value="Abre el Blog en tu navegador favorito"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de mano"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="botonSalir">

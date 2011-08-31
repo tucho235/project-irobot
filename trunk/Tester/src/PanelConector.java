@@ -88,7 +88,7 @@ public class PanelConector extends javax.swing.JPanel {
             }
         });
 
-        jlEstado.setFont(new java.awt.Font("Tahoma", 2, 11));
+        jlEstado.setForeground(new java.awt.Color(51, 204, 255));
         jlEstado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jlEstado.setText("Desconectado");
         jlEstado.setToolTipText("Desconectado");
