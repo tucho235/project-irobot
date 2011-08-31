@@ -162,6 +162,7 @@ public class PanelConector extends javax.swing.JPanel {
                 NXTCommand.getSingleton().setNXTComm(conn.getNXTComm());
                 Motor.A.resetTachoCount();
                 Motor.B.resetTachoCount();
+                Motor.C.resetTachoCount();
                 sensorUltrasonico   = new UltrasonicSensor(SensorPort.S2);
                 sensorLuz           = new LightSensor(SensorPort.S1);
                 sensorTacto         = new TouchSensor(SensorPort.S3);
