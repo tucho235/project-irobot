@@ -211,7 +211,7 @@ public class Performance extends javax.swing.JPanel {
         btExportar.setEnabled(false);
         btNuevoTest.setEnabled(false);
         delta = (Integer)jsGrados.getValue();
-        /* Despu�s de medir cuantos � equivalen 10 cm volver a descomentar */
+        /* Después de medir cuantos ° equivalen 10 cm volver a descomentar */
         jsGrados.setEnabled(false); 
         currentTest = new Test(idTest,itTest,delta);
         tests.add(currentTest);
@@ -234,6 +234,7 @@ public class Performance extends javax.swing.JPanel {
 
     private void btSensarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSensarActionPerformed
 
+    	PanelConector.pausarKeepAlive(true);
 //    	currentTest.setTiempoLuz(idTest * itTest);
 //        currentTest.setTiempoTacto(2 * idTest * itTest);
 //        currentTest.setTiempoUltrasonido(3 * idTest * itTest);
@@ -310,6 +311,7 @@ public class Performance extends javax.swing.JPanel {
         btAvanzar.setEnabled(true);
         btSensar.setEnabled(false);
         btFinalizar.setEnabled(true);
+        PanelConector.pausarKeepAlive(false);
     }//GEN-LAST:event_btSensarActionPerformed
 
     private void btAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAvanzarActionPerformed
@@ -359,7 +361,7 @@ public class Performance extends javax.swing.JPanel {
         int mes = calendario.get(Calendar.MONTH) +1;
         mesS = ((mes <= 9 ) ? "0"+mes : ""+mes);
         int anio = calendario.get(Calendar.YEAR);
-        int hora =calendario.get(Calendar.HOUR_OF_DAY);
+        int hora = calendario.get(Calendar.HOUR_OF_DAY);
         horaS = ((hora <= 9 ) ? "0"+hora : ""+hora);
         int minutos = calendario.get(Calendar.MINUTE);
         minutosS = ((minutos <= 9 ) ? "0"+minutos : ""+minutos);
