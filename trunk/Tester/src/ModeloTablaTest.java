@@ -213,7 +213,7 @@ public class ModeloTablaTest implements TableModel
          * @param columnIndex  the index of the column
          * @return the common ancestor class of the object values in the model.
          */
-        public Class getColumnClass(int columnIndex) {
+        public Class<?> getColumnClass(int columnIndex) {
                 // Devuelve la clase que hay en cada columna.
                 switch (columnIndex)
                 {
