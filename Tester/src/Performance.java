@@ -50,20 +50,20 @@ public class Performance extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        jPCetral = new javax.swing.JPanel();
         btNuevoTest = new javax.swing.JButton();
         btFinalizar = new javax.swing.JButton();
         btExportar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
+        jSPTabla = new javax.swing.JScrollPane();
+        jTabla = new javax.swing.JTable();
+        jPDerecho = new javax.swing.JPanel();
         btAvanzar = new javax.swing.JButton();
         btSensar = new javax.swing.JButton();
         progressBar = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
+        jlLogo = new javax.swing.JLabel();
         jsGrados = new javax.swing.JSpinner();
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPCetral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btNuevoTest.setText("Nuevo Test");
         btNuevoTest.addActionListener(new java.awt.event.ActionListener() {
@@ -88,13 +88,13 @@ public class Performance extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(modeloTabla);
-        jTable1.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTabla.setModel(modeloTabla);
+        jTabla.setColumnSelectionAllowed(true);
+        jSPTabla.setViewportView(jTabla);
+        jTabla.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        jPanel3.setOpaque(false);
-        jPanel3.setPreferredSize(new java.awt.Dimension(100, 248));
+        jPDerecho.setOpaque(false);
+        jPDerecho.setPreferredSize(new java.awt.Dimension(100, 248));
 
         btAvanzar.setText("Avanzar");
         btAvanzar.setEnabled(false);
@@ -114,32 +114,32 @@ public class Performance extends javax.swing.JPanel {
 
         progressBar.setMaximum(4);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/irobot.png"))); // NOI18N
+        jlLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/irobot.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPDerechoLayout = new javax.swing.GroupLayout(jPDerecho);
+        jPDerecho.setLayout(jPDerechoLayout);
+        jPDerechoLayout.setHorizontalGroup(
+            jPDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPDerechoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlLogo, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDerechoLayout.createSequentialGroup()
                         .addComponent(jsGrados, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPDerechoLayout.createSequentialGroup()
                         .addComponent(btAvanzar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPDerechoLayout.createSequentialGroup()
                         .addComponent(btSensar, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPDerechoLayout.createSequentialGroup()
                         .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                         .addContainerGap())))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        jPDerechoLayout.setVerticalGroup(
+            jPDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDerechoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jsGrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -149,21 +149,21 @@ public class Performance extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(jLabel1))
+                .addComponent(jlLogo))
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPCetralLayout = new javax.swing.GroupLayout(jPCetral);
+        jPCetral.setLayout(jPCetralLayout);
+        jPCetralLayout.setHorizontalGroup(
+            jPCetralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPCetralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+                .addGroup(jPCetralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPCetralLayout.createSequentialGroup()
+                        .addComponent(jSPTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPDerecho, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPCetralLayout.createSequentialGroup()
                         .addComponent(btNuevoTest)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btFinalizar)
@@ -171,18 +171,18 @@ public class Performance extends javax.swing.JPanel {
                         .addComponent(btExportar)))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jPCetralLayout.setVerticalGroup(
+            jPCetralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPCetralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPCetralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btNuevoTest)
                     .addComponent(btFinalizar)
                     .addComponent(btExportar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
+                .addGroup(jPCetralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSPTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                    .addComponent(jPDerecho, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -192,14 +192,14 @@ public class Performance extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPCetral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPCetral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -215,7 +215,7 @@ public class Performance extends javax.swing.JPanel {
         jsGrados.setEnabled(false); 
         currentTest = new Test(idTest,itTest,delta);
         tests.add(currentTest);
-        ((ModeloTablaTest)jTable1.getModel()).agregarTest(currentTest);
+        ((ModeloTablaTest)jTabla.getModel()).agregarTest(currentTest);
     }
     
     private void btNuevoTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoTestActionPerformed
@@ -258,7 +258,7 @@ public class Performance extends javax.swing.JPanel {
             		gradosB = Float.parseFloat(Integer.toString((Integer)jsGrados.getValue()));
             	}
             	currentTest.setGradosMotores((gradosA + gradosB)/2);
-            	((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+            	((ModeloTablaTest)jTabla.getModel()).modificarTest(currentTest, jTabla.getModel().getRowCount()-1);
                 progressBar.setValue(1);
                 
                 try {
@@ -273,7 +273,7 @@ public class Performance extends javax.swing.JPanel {
                 Calendar fin = Calendar.getInstance();
                 long tiempoTacto = fin.getTimeInMillis() - inicio.getTimeInMillis();
                 currentTest.setTiempoTacto(tiempoTacto);
-                ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+                ((ModeloTablaTest)jTabla.getModel()).modificarTest(currentTest, jTabla.getModel().getRowCount()-1);
                 progressBar.setValue(2);
                 
                 try {
@@ -288,7 +288,7 @@ public class Performance extends javax.swing.JPanel {
                 fin = Calendar.getInstance();
                 long tiempoUltrasonido = fin.getTimeInMillis() - inicio.getTimeInMillis();
                 currentTest.setTiempoUltrasonido(tiempoUltrasonido);
-                ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+                ((ModeloTablaTest)jTabla.getModel()).modificarTest(currentTest, jTabla.getModel().getRowCount()-1);
                 progressBar.setValue(3);
                 try {
                     Thread.sleep(500);
@@ -303,7 +303,7 @@ public class Performance extends javax.swing.JPanel {
                 fin = Calendar.getInstance();
                 long tiempoLuz = fin.getTimeInMillis() - inicio.getTimeInMillis();
                 currentTest.setTiempoLuz(tiempoLuz);
-                ((ModeloTablaTest)jTable1.getModel()).modificarTest(currentTest, jTable1.getModel().getRowCount()-1);
+                ((ModeloTablaTest)jTabla.getModel()).modificarTest(currentTest, jTabla.getModel().getRowCount()-1);
                 progressBar.setValue(4);
             }
         }, "Thread para Sensar");
@@ -326,7 +326,7 @@ public class Performance extends javax.swing.JPanel {
         
         currentTest = new Test(idTest,itTest,delta);
         tests.add(currentTest);
-        ((ModeloTablaTest)jTable1.getModel()).agregarTest(currentTest);
+        ((ModeloTablaTest)jTabla.getModel()).agregarTest(currentTest);
         progressBar.setValue(0);
     }//GEN-LAST:event_btAvanzarActionPerformed
 
@@ -388,11 +388,11 @@ public class Performance extends javax.swing.JPanel {
     private javax.swing.JButton btFinalizar;
     private javax.swing.JButton btNuevoTest;
     private javax.swing.JButton btSensar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JPanel jPCetral;
+    private javax.swing.JPanel jPDerecho;
+    private javax.swing.JScrollPane jSPTabla;
+    private javax.swing.JTable jTabla;
+    private javax.swing.JLabel jlLogo;
     private javax.swing.JSpinner jsGrados;
     private javax.swing.JProgressBar progressBar;
     // End of variables declaration//GEN-END:variables

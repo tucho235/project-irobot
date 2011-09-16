@@ -62,34 +62,34 @@ public class Tester extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jPInferior = new javax.swing.JPanel();
+        jlLink = new javax.swing.JLabel();
         botonSalir = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        performance1 = new Performance();
-        controlRemoto1 = new ControlRemoto();
-        panelConector1 = new PanelConector();
+        jTPestanias = new javax.swing.JTabbedPane();
+        panelPerformance = new Performance();
+        panelControlRemoto = new ControlRemoto();
+        panelConector = new PanelConector();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(".:: iRobot ::. - Tester");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/favicon.png")).getImage());
         setResizable(false);
 
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPInferior.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IE9_24.png"))); // NOI18N
-        jLabel1.setText("<html><a href=\\\"http://Project-iRobot.com.ar\">http://Project-iRobot.com.ar</a></html>");
-        jLabel1.setToolTipText("Abre el Blog en tu navegador favorito");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlLink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IE9_24.png"))); // NOI18N
+        jlLink.setText("<html><a href=\\\"http://Project-iRobot.com.ar\">http://Project-iRobot.com.ar</a></html>");
+        jlLink.setToolTipText("Abre el Blog en tu navegador favorito");
+        jlLink.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jlLinkMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel1MouseEntered(evt);
+                jlLinkMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel1MouseExited(evt);
+                jlLinkMouseExited(evt);
             }
         });
 
@@ -100,29 +100,29 @@ public class Tester extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPInferiorLayout = new javax.swing.GroupLayout(jPInferior);
+        jPInferior.setLayout(jPInferiorLayout);
+        jPInferiorLayout.setHorizontalGroup(
+            jPInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPInferiorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlLink, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 490, Short.MAX_VALUE)
                 .addComponent(botonSalir)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        jPInferiorLayout.setVerticalGroup(
+            jPInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPInferiorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlLink, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonSalir))
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Performance", performance1);
-        jTabbedPane1.addTab("Control Remoto", controlRemoto1);
+        jTPestanias.addTab("Performance", panelPerformance);
+        jTPestanias.addTab("Control Remoto", panelControlRemoto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,20 +131,20 @@ public class Tester extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
-                    .addComponent(panelConector1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTPestanias, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
+                    .addComponent(panelConector, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
+                    .addComponent(jPInferior, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelConector1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelConector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1)
+                .addComponent(jTPestanias)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPInferior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -155,7 +155,7 @@ public class Tester extends javax.swing.JFrame {
         salir();
     }//GEN-LAST:event_botonSalirActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void jlLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlLinkMouseClicked
         if (Desktop.isDesktopSupported()) {
             Desktop desktop = Desktop.getDesktop();
             try {
@@ -169,16 +169,16 @@ public class Tester extends javax.swing.JFrame {
             }
         } else {
         }
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_jlLinkMouseClicked
 
-    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
-        rc = jLabel1.getForeground();
-        jLabel1.setForeground(Color.blue);
-    }//GEN-LAST:event_jLabel1MouseEntered
+    private void jlLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlLinkMouseEntered
+        rc = jlLink.getForeground();
+        jlLink.setForeground(Color.blue);
+    }//GEN-LAST:event_jlLinkMouseEntered
 
-    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
-        jLabel1.setForeground(rc);
-    }//GEN-LAST:event_jLabel1MouseExited
+    private void jlLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlLinkMouseExited
+        jlLink.setForeground(rc);
+    }//GEN-LAST:event_jlLinkMouseExited
 
     /**
     * @param args the command line arguments
@@ -197,12 +197,12 @@ public class Tester extends javax.swing.JFrame {
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir;
-    private ControlRemoto controlRemoto1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private PanelConector panelConector1;
-    private Performance performance1;
+    private javax.swing.JPanel jPInferior;
+    private javax.swing.JTabbedPane jTPestanias;
+    private javax.swing.JLabel jlLink;
+    private PanelConector panelConector;
+    private ControlRemoto panelControlRemoto;
+    private Performance panelPerformance;
     // End of variables declaration//GEN-END:variables
     private Color rc;
 }
