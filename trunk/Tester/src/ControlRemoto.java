@@ -34,7 +34,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
     public ControlRemoto() {
         initComponents();
         jTA_Log.setEditable(true);
-        jcheck.setSelected(true);
+        jcSensar.setSelected(true);
 
         jP_Joystick.addMouseListener(this);
         jP_Joystick.addMouseMotionListener(this);
@@ -49,7 +49,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
                         } else {
                         	moverMotores();
                         }
-                    	if (jcheck.isSelected() && hayRobot){
+                    	if (jcSensar.isSelected() && hayRobot){
                                 actualizarSensores();
                         }
                     } 
@@ -358,7 +358,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
     private void logea(String linea){
             jTA_Log.append(linea);
             jTA_Log.getCaret().setDot( jTA_Log.getText().length() );
-            jScrollPane1.scrollRectToVisible(jTA_Log.getVisibleRect() );
+            jSPBitacora.scrollRectToVisible(jTA_Log.getVisibleRect() );
     }
 
     private void actualizarSensores(){
@@ -409,8 +409,8 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
         jL_Distancia = new javax.swing.JLabel();
         jL_Color = new javax.swing.JLabel();
         jL_Tacto = new javax.swing.JLabel();
-        jcheck = new javax.swing.JCheckBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jcSensar = new javax.swing.JCheckBox();
+        jSPBitacora = new javax.swing.JScrollPane();
         jTA_Log = new javax.swing.JTextArea();
         jtMotorA = new javax.swing.JTextField();
         jtMotorB = new javax.swing.JTextField();
@@ -418,7 +418,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
         jtTacto = new javax.swing.JTextField();
         jtColor = new javax.swing.JTextField();
         jtDistancia = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jlLogo = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(701, 376));
         setMinimumSize(new java.awt.Dimension(701, 376));
@@ -451,13 +451,13 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
 
         jL_Tacto.setText("Tacto:");
 
-        jcheck.setText("Sensar?");
+        jcSensar.setText("Sensar?");
 
         jTA_Log.setColumns(20);
         jTA_Log.setEditable(false);
         jTA_Log.setRows(5);
         jTA_Log.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(jTA_Log);
+        jSPBitacora.setViewportView(jTA_Log);
 
         jtMotorA.setEnabled(false);
 
@@ -471,7 +471,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
 
         jtDistancia.setEnabled(false);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/irobot.png"))); // NOI18N
+        jlLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/irobot.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -500,10 +500,10 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
                                     .addComponent(jtMotorC)
                                     .addComponent(jtMotorB)
                                     .addComponent(jtMotorA, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)))
-                            .addComponent(jcheck)))
-                    .addComponent(jLabel1))
+                            .addComponent(jcSensar)))
+                    .addComponent(jlLogo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addComponent(jSPBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -511,7 +511,7 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .addComponent(jSPBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
                     .addComponent(jP_Joystick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(5, 5, 5)
@@ -539,9 +539,9 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
                             .addComponent(jL_Distancia)
                             .addComponent(jtDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcheck)
+                        .addComponent(jcSensar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addComponent(jlLogo)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -554,11 +554,11 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
     private javax.swing.JLabel jL_MotorB;
     private javax.swing.JLabel jL_MotorC;
     private javax.swing.JLabel jL_Tacto;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jP_Joystick;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jSPBitacora;
     private javax.swing.JTextArea jTA_Log;
-    private javax.swing.JCheckBox jcheck;
+    private javax.swing.JCheckBox jcSensar;
+    private javax.swing.JLabel jlLogo;
     private javax.swing.JTextField jtColor;
     private javax.swing.JTextField jtDistancia;
     private javax.swing.JTextField jtMotorA;
