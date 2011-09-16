@@ -119,15 +119,18 @@ public class PanelConector extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 	public static void pausarKeepAlive(boolean b) {
-    	if (b){
-    		t2.interrupt();
-    	} else {
-    		t2.start();
+    	if (conectado){
+    		if (b){
+	    		t2.interrupt();
+	    	} else {
+	    		t2.start();
+	    	}
     	}
 	}
     
     public void keepAlive(){
         Motor.A.getTachoCount();
+        System.out.println("ping...");
     }
     
 	private void botonDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDesconectarActionPerformed
@@ -151,7 +154,8 @@ public class PanelConector extends javax.swing.JPanel {
             jlEstado.setText("Desconectado: "+hora + ":" + minutos + ":" + segundos);
             jlEstado.setToolTipText("Desconectado");
             
-            t2.interrupt();
+//            t2.interrupt();
+            pausarKeepAlive(true);
 //            jTA_Log.append("----------------\n");
 //            jTA_Log.append("Desconectado al NXT "+ Calendar.HOUR_OF_DAY + ":" +
 //                            Calendar.MINUTE + ":" + Calendar.SECOND + "\n");

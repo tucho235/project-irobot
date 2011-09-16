@@ -42,14 +42,14 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
         Thread t = new Thread(new Runnable() {
             public void run() {
                 while (true){
-                    if ((clik) && (PanelConector.estaConectado())){
-                    	imprimir();
+                    if ((clik) && ((PanelConector.estaConectado()) || (!hayRobot))){
+//                    	imprimir();
                         if (mejorado){
                         	moverMotoresMejorado();
                         } else {
                         	moverMotores();
                         }
-                    	if (jcheck.isSelected()){
+                    	if (jcheck.isSelected() && hayRobot){
                                 actualizarSensores();
                         }
                     } 
@@ -65,11 +65,8 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
                 }
             }
         }, "Thread para capturar el clik del mouse en el joystick y mover los motores");
-        t.start();
-
-        
+        t.start(); 
     }
-    
 
     public void mouseClicked(MouseEvent e){	}
 
@@ -92,11 +89,13 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
     	posXold = posX;
     	posYold = posY;
     	if (mejorado){
-    		posX = (e.getX() - 100) - ((e.getX() - 100));
-    		posY = ( -(e.getY() - 100)) - ( -(e.getY() - 100));
-    		
+    		posX = (e.getX() - 100);
+    		posY = -(e.getY() - 100);
+
     		posX = (posX > 100) ? 100 : posX; 
     		posY = (posY > 100) ? 100 : posY;
+    		posX = (posX < -100) ? -100 : posX; 
+    		posY = (posY < -100) ? -100 : posY;
     	} else {
     		posX = (e.getX()-100)-((e.getX()-100) % 10);
     		posY = (-(e.getY()-100))-( -(e.getY()-100) % 10);
@@ -108,13 +107,13 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
     	posXold = posX;
     	posYold = posY;
     	if (mejorado){
-    		posX = (e.getX()-100)-((e.getX()-100));
-    		posY = (-(e.getY()-100))-( -(e.getY()-100));
-    		
+    		posX = (e.getX() - 100);
+    		posY = -(e.getY() - 100);
+
     		posX = (posX > 100) ? 100 : posX; 
     		posY = (posY > 100) ? 100 : posY;
-    		
-    		
+    		posX = (posX < -100) ? -100 : posX; 
+    		posY = (posY < -100) ? -100 : posY;
     	} else {
     		posX = (e.getX()-100)-((e.getX()-100) % 10);
     		posY = (-(e.getY()-100))-( -(e.getY()-100)%10);
@@ -194,11 +193,11 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
                     velocidadA = posY;
                     velocidadB = velocidadA;
             }
-            if ((posX > 0) && (posY == 0)){ // gira a la derecha A = -B
+            if ((posX > 0) && ((posY > -5) && (posY < 5))){ // gira a la derecha A = -B
                     velocidadA = posX;
                     velocidadB = -velocidadA;
             }
-            if ((posX < 0) && (posY == 0)){ // gira a la izquierda -A = B
+            if ((posX < 0) && ((posY > -5) && (posY < 5))){ // gira a la izquierda -A = B
                     velocidadA = posX;
                     velocidadB = -velocidadA;
             }
@@ -233,65 +232,124 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
 //                            Motor.B.backward();
 //                    }
 //            } else {
-            
-            if (formaAvanzarNueva){
-            	if ((posXold > 0) && (velocidadA < 0)){//Motor.A.isForward()
-                	Motor.A.stop();
-                	Motor.A.backward();
-                }
-                if ((posYold > 0) && (velocidadB < 0)){//Motor.B.isForward()
-                	Motor.B.stop();
-                	Motor.B.backward();
-                }
-                
-                if ((posXold < 0) && (velocidadA > 0)){//Motor.A.isBackward()
-                	Motor.A.stop();
-                	Motor.A.forward();
-                }
-                if ((posYold < 0) && (velocidadB > 0)){//Motor.B.isBackward()
-                	Motor.B.stop();
-                	Motor.B.forward();
-                }
-                if ((!Motor.A.isMoving()) && (velocidadA > 0)){
-                	Motor.A.forward();
-                }
-                if ((!Motor.B.isMoving()) && (velocidadB > 0)){
-                	Motor.B.forward();
-                }
-                if ((!Motor.A.isMoving()) && (velocidadA < 0)){
-                	Motor.A.backward();
-                }
-                if ((!Motor.B.isMoving()) && (velocidadB < 0)){
-                	Motor.B.backward();
-                }
+           velocidadA = velocidadA*5;
+           velocidadB = velocidadB *5;
+           Motor.A.smoothAcceleration(true);
+           Motor.B.smoothAcceleration(true);
+            if (hayRobot){
+	            if (formaAvanzarNueva){
+	            	if ((posXold > 0) && (velocidadA < 0)){//Motor.A.isForward()
+	                	Motor.A.stop();
+	                	Motor.A.backward();
+	                }
+	                if ((posYold > 0) && (velocidadB < 0)){//Motor.B.isForward()
+	                	Motor.B.stop();
+	                	Motor.B.backward();
+	                }
+	                
+	                if ((posXold < 0) && (velocidadA > 0)){//Motor.A.isBackward()
+	                	Motor.A.stop();
+	                	Motor.A.forward();
+	                }
+	                if ((posYold < 0) && (velocidadB > 0)){//Motor.B.isBackward()
+	                	Motor.B.stop();
+	                	Motor.B.forward();
+	                }
+	                if ((!Motor.A.isMoving()) && (velocidadA > 0)){
+	                	Motor.A.forward();
+	                }
+	                if ((!Motor.B.isMoving()) && (velocidadB > 0)){
+	                	Motor.B.forward();
+	                }
+	                if ((!Motor.A.isMoving()) && (velocidadA < 0)){
+	                	Motor.A.backward();
+	                }
+	                if ((!Motor.B.isMoving()) && (velocidadB < 0)){
+	                	Motor.B.backward();
+	                }
+	            } else {
+	            	if (velocidadA < 0) {
+	                    Motor.A.backward();
+		            } else {
+		                    if (velocidadA > 0){
+		                            Motor.A.forward();
+		                    } else {
+		                            Motor.A.stop();
+		                    }
+		            }
+		            if (velocidadB < 0){
+		                    Motor.B.backward();
+		            } else {
+		                    if (velocidadB > 0) {
+		                            Motor.B.forward();
+		                    } else {
+		                            Motor.B.stop();
+		                    }
+		            }
+	            }
+	
+	            Motor.A.setSpeed(Math.abs(velocidadA));
+	            Motor.B.setSpeed(Math.abs(velocidadB));
             } else {
-            	if (velocidadA < 0) {
-                    Motor.A.backward();
+            	if (formaAvanzarNueva){
+	            	if ((posXold > 0) && (velocidadA < 0)){//Motor.A.isForward()
+	                	System.out.println("Motor.A.stop();");
+	                	System.out.println("Motor.A.backward();");
+	                }
+	                if ((posYold > 0) && (velocidadB < 0)){//Motor.B.isForward()
+	                	System.out.println("Motor.B.stop();");
+	                	System.out.println("Motor.B.backward();");
+	                }
+	                
+	                if ((posXold < 0) && (velocidadA > 0)){//Motor.A.isBackward()
+	                	System.out.println("Motor.A.stop();");
+	                	System.out.println("Motor.A.forward();");
+	                }
+	                if ((posYold < 0) && (velocidadB > 0)){//Motor.B.isBackward()
+	                	System.out.println("Motor.B.stop();");
+	                	System.out.println("Motor.B.forward();");
+	                }
+	                if ((!Motor.A.isMoving()) && (velocidadA > 0)){
+	                	System.out.println("Motor.A.forward();");
+	                }
+	                if ((!Motor.B.isMoving()) && (velocidadB > 0)){
+	                	System.out.println("Motor.B.forward();");
+	                }
+	                if ((!Motor.A.isMoving()) && (velocidadA < 0)){
+	                	System.out.println("Motor.A.backward();");
+	                }
+	                if ((!Motor.B.isMoving()) && (velocidadB < 0)){
+	                	System.out.println("Motor.B.backward();");
+	                }
 	            } else {
-	                    if (velocidadA > 0){
-	                            Motor.A.forward();
-	                    } else {
-	                            Motor.A.stop();
-	                    }
+	            	if (velocidadA < 0) {
+	            		System.out.println("Motor.A.backward();");
+		            } else {
+		                    if (velocidadA > 0){
+		                    	System.out.println("Motor.A.forward();");
+		                    } else {
+		                    	System.out.println("Motor.A.stop();");
+		                    }
+		            }
+		            if (velocidadB < 0){
+		            	System.out.println("Motor.B.backward();");
+		            } else {
+		                    if (velocidadB > 0) {
+		                    	System.out.println("Motor.B.forward();");
+		                    } else {
+		                    	System.out.println("Motor.B.stop();");
+		                    }
+		            }
 	            }
-	            if (velocidadB < 0){
-	                    Motor.B.backward();
-	            } else {
-	                    if (velocidadB > 0) {
-	                            Motor.B.forward();
-	                    } else {
-	                            Motor.B.stop();
-	                    }
-	            }
+	
+            	System.out.println("Motor.A.setSpeed("+Math.abs(velocidadA)+");");
+            	System.out.println("Motor.B.setSpeed("+Math.abs(velocidadB)+");");
             }
-
-            Motor.A.setSpeed(Math.abs(velocidadA));
-            Motor.B.setSpeed(Math.abs(velocidadB));
             System.out.println("velocidad A: "+velocidadA);
             System.out.println("velocidad B: "+velocidadB);
 //            }
-            logea("Mover Motor A\n");
-            logea("Mover Motor B\n");
+            logea("Mover Motor A: " + Math.abs(velocidadA)+"\n");
+            logea("Mover Motor B: " + Math.abs(velocidadB)+ "\n");
     	} catch (Exception e){
     		e.printStackTrace();
     	}
@@ -516,5 +574,6 @@ public class ControlRemoto extends javax.swing.JPanel implements MouseListener, 
     private int posYold =0;
     private boolean mejorado = true;
     Image imagen = null;
-    private boolean formaAvanzarNueva = true;
+    private boolean formaAvanzarNueva = true;//false;//
+    private boolean hayRobot=true;//false; //
 }
